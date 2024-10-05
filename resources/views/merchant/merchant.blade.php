@@ -1,4 +1,4 @@
-@section('title',"Pro. Category")
+@section('title',"Merchant Info")
 @extends('layout.app')
 @section('main')
     <div class="content-wrapper">
@@ -7,8 +7,8 @@
                 <div class="card">
                     <div class="card-body border-bottom">
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-2 mb-md-0 text-uppercase fw-medium">Pro. Category</h6>
-                            <button class="btn btn-success btn-sm addButton" type="button" onclick="showModal()"><i
+                            <h6 class="mb-2 mb-md-0 text-uppercase fw-medium">Merchant Info</h6>
+                            <button class="btn btn-success btn-sm " type="button" onclick="showModal()"><i
                                     class="typcn typcn-plus"></i> Add New
                             </button>
 
@@ -20,10 +20,20 @@
                                 <form id="filterForm">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Search Name</label>
-                                                <input type="text" id="name" name="name" class="form-control form-control-sm" placeholder="Search BY Name" aria-label="name">
+                                                <input type="text" id="name" name="name"
+                                                       class="form-control form-control-sm"
+                                                       placeholder="Enter Name For Search" aria-label="Username">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Search Email</label>
+                                                <input type="text" id="email" name="email"
+                                                       class="form-control form-control-sm"
+                                                       placeholder="Enter Email For Search" aria-label="Username">
                                             </div>
                                         </div>
                                     </div>
@@ -33,7 +43,11 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Owner Name</th>
+                                    <th>Owner Phone</th>
+                                    <th>Company Name</th>
+                                    <th>Company Email</th>
+                                    <th>Address</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -63,23 +77,78 @@
                     <form id="addRoleForm" class="row g-3" onsubmit="return false">
                         @csrf
                         <input type="hidden" name="id" id="id"/>
+                        <div class="row g-1">
+                            <div class="col mb-1">
+                                <label class="form-label" for="owner_name">Owner Name</label>
+                                <input type="text" id="owner_name" name="owner_name" class="form-control"
+                                       placeholder="Enter Owner Name" tabindex="-1"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
                         <div class="row g-2">
                             <div class="col mb-1">
-                                <label class="form-label" for="i_name">Name</label>
-                                <input type="text" id="i_name" name="i_name" class="form-control" placeholder="Enter Name" tabindex="-1"/>
+                                <label class="form-label" for="owner_email">Owner Email</label>
+                                <input type="text" id="owner_email" name="owner_email" class="form-control"
+                                       placeholder="Enter Owner email"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col mb-1" id="pass">
+                                <label class="form-label" for="owner_phone">Owner Phone</label>
+                                <input type="number" id="owner_phone" name="owner_phone" class="form-control"
+                                       placeholder="Enter Owner Phone"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="row g-1">
+                            <div class="col mb-1">
+                                <label class="form-label" for="company_name">Company Name</label>
+                                <input type="text" id="company_name" name="company_name" class="form-control"
+                                       placeholder="Enter Company Name" tabindex="-1"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col mb-1">
+                                <label class="form-label" for="company_email">Company Email</label>
+                                <input type="text" id="company_email" name="company_email" class="form-control"
+                                       placeholder="Enter Company email"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col mb-1" id="pass">
+                                <label class="form-label" for="company_phone">Company Phone</label>
+                                <input type="number" id="company_phone" name="company_phone" class="form-control"
+                                       placeholder="Enter Company Phone"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="row g-1">
+                            <div class="col mb-1">
+                                <label class="form-label" for="address">Company Address</label>
+                                <input type="text" id="address" name="address" class="form-control"
+                                       placeholder="Enter Company address" tabindex="-1"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col mb-1">
+                                <label class="form-label">Select User</label>
+                                <select class="form-select" name="user_id" id="user_id">
+                                    <option value="">Select A User</option>
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col mb-1">
                                 <label class="form-label">Select Status</label>
                                 <select class="form-select" name="status" id="status">
-                                    <option  value="">Select Status</option>
+                                    <option value="">Select Status</option>
                                     <option value="A">Active</option>
                                     <option value="I">InActive</option>
                                 </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-
                     </form>
                 </div>
 
@@ -97,10 +166,7 @@
     <script>
         function showModal() {
             $("#addModal form")[0].reset();
-            $("#addModal input[type='hidden']").not("[name='_token']").each(function() {
-                $(this).val('');
-            });
-            $(".modal-title").text("Add New");
+            $(".modal-title").text("Add New User");
             $("#addModal").modal("show");
         }
 
@@ -109,27 +175,40 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('ProCategory.data') }}',
+                    url: '{{ route('merchant-info.data') }}',
                     type: 'POST',
                     data: function (d) {
-                        d._token = $('input[name="_token"]').val();
+                        d._token = $('input[name="_token"]').val(); // Include CSRF token
                         d.name = $('input[name="name"]').val();
+                        d.email = $('input[name="email"]').val();
                     }
                 },
                 columns: [
                     {data: 'id'},
-                    {data: 'name'},
-                    {data: 'status'},
+                    {data: 'owner_name', title: 'Owner Name'},
+                    {data: 'owner_phone', title: 'Owner Phone'},
+                    {data: 'company_name', title: 'Company Name'},
+                    {data: 'company_email', title: 'Company Email'},
+                    {data: 'address', title: 'Address'},
+                    {data: 'status', title: 'Status'},
                     {
                         data: null,
                         render: function (data, type, row) {
                             return `
-                                <button type="button" class="btn btn-outline-success btn-sm btn-icon-text edit-btn" data-id="${row.uid}"><i class="typcn typcn-edit btn-icon-append"></i></button>
-                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon-text delete-btn" data-id="${row.uid}"><i class="typcn typcn-delete-outline btn-icon-append"></i></button>
-                            `;
+                                <button type="button" class="btn btn-outline-success btn-sm btn-icon-text edit-btn" data-id="${row.id}"><i class="typcn typcn-edit btn-icon-append"></i></button>
+                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon-text delete-btn" data-id="${row.id}"><i class="typcn typcn-delete-outline btn-icon-append"></i></button>
+                        `;
                         },
                         orderable: false,
                         searchable: false
+                    }
+                ],
+                columnDefs: [
+                    {
+                        targets: 4,
+                        render: function (data, type, row) {
+                            return data ? new Date(data).toLocaleString('en-GB', {timeZone: 'Asia/Dhaka'}) : 'N/A';
+                        }
                     }
                 ],
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -148,7 +227,7 @@
             });
 
             // Handle Delete button click
-            $('#usersTable tbody').on('click', '.delete-btn', function() {
+            $('#usersTable tbody').on('click', '.delete-btn', function () {
                 var id = $(this).data('id');
                 Swal.fire({
                     title: "Are you sure?",
@@ -163,10 +242,10 @@
                         var csrf_token = $('meta[name="csrf-token"]').attr('content');
 
                         $.ajax({
-                            url: "{{ url('ProCategory') }}" + '/' + id,
+                            url: "{{ url('merchant-info') }}" + '/' + id,
                             type: "POST",
                             data: {'_method': 'DELETE', '_token': csrf_token},
-                            success: function(response) {
+                            success: function (response) {
                                 if (response.statusCode == 200) {
                                     Swal.fire({
                                         title: "Deleted!",
@@ -178,7 +257,7 @@
                                 }
                                 $('#usersTable').DataTable().ajax.reload();
                             },
-                            error: function(xhr) {
+                            error: function (xhr) {
                                 alert('Delete failed: ' + xhr.responseText);
                             }
                         });
@@ -195,7 +274,7 @@
         });
 
         function addData() {
-            url = "{{ url('ProCategory') }}";
+            url = "{{ url('merchant-info') }}";
             $.ajax({
                 url: url,
                 type: "POST",
@@ -212,9 +291,9 @@
                         $("#addModal form")[0].reset();
                         $("#addModal").modal("hide");
                         $('#usersTable').DataTable().ajax.reload();
-                    }else if (data.statusCode == 204) {
+                    } else if (data.statusCode == 204) {
                         showErrors(data.errors);
-                    }else{
+                    } else {
                         Swal.fire({
                             icon: "error",
                             text: data.statusMsg,
@@ -233,31 +312,63 @@
 
         function showData(id) {
             $("#addModal form")[0].reset();
-            $("#addModal input[type='hidden']").not("[name='_token']").each(function() {
-                $(this).val('');
-            });
             $("#addModal").modal("show");
             $("#pass").hide();
 
             $.ajax({
-                url: "{{ url('ProCategory') }}" + '/' + id,
+                url: "{{ url('merchant-info') }}" + '/' + id,
                 type: "GET",
                 dataType: "JSON",
                 success: function (data) {
                     $('#addModal form')[0].reset();
-                    $('.modal-title').text('Update  Data');
+                    $('.modal-title').text('Update');
                     $('#addModal').modal('show');
-                    $('#id').val(data.uid);
-                    $('#i_name').val(data.name);
+                    $('#id').val(data.id);
+                    $('#owner_name').val(data.owner_name);
+                    $('#owner_phone').val(data.owner_phone);
+                    $('#owner_email').val(data.owner_email);
+                    $('#company_name').val(data.company_name);
+                    $('#company_phone').val(data.company_phone);
+                    $('#company_email').val(data.company_email);
+                    $('#address').val(data.address);
                     $('#status').val(data.status);
                 }, error: function () {
-                    Swal.fire({
-                        icon: "error",
+                    swal({
+                        title: "Oops",
                         text: "Error Occured",
+                        icon: "error",
+                        timer: '1500'
                     });
                 }
             });
             return false;
         };
+
+        $.ajax({
+            url: "{{ url('getDisUserList') }}",
+            method: 'GET',
+            success: function (data) {
+                var $select = $('#user_id');
+                if (Array.isArray(data) && data.length > 0) {
+                    $select.empty();
+                    $select.append('<option value="">Select a User</option>');
+                    $.each(data, function (index, item) {
+                        $select.append($('<option>', {
+                            value: item.id,
+                            text: item.name
+                        }));
+                    });
+                } else {
+                    $select.empty();
+                    $select.append('<option value="">Select a User</option>');
+                }
+            },
+            error: function (xhr) {
+                Swal.fire({
+                    icon: "error",
+                    text: 'An error occurred:', xhr,
+                });
+            }
+        });
     </script>
 @endsection

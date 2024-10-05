@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\UserConfig;
 
 use App\Http\Controllers\Controller;
-use App\Models\auth\PermissionRole;
-use App\Models\auth\Role;
-use App\Models\Menu\Menu;
+use App\Models\UserConfig\PermissionRole;
+use App\Models\UserConfig\Role;
 use App\Models\UserConfig\UserType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class RoleController extends Controller
 {

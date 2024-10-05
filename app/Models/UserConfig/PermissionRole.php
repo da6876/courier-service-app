@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models\auth;
+namespace App\Models\UserConfig;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PermissionRole extends Model

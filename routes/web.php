@@ -6,9 +6,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('website.home');
 });
+Route::get('/emails', function () {
+    return view('emails.registration');
+});
 Route::get('login', [\App\Http\Controllers\UserConfig\UserInfoController::class, 'loginPage'])->name('login');
 Route::get('registration', [\App\Http\Controllers\UserConfig\UserInfoController::class, 'registration'])->name('registration');
 Route::post('loginPost', [\App\Http\Controllers\UserConfig\UserInfoController::class, 'loginPost'])->name('loginPost');
+Route::post('regPost', [\App\Http\Controllers\merchant\MerchantInfoController::class, 'regPost'])->name('regPost');
 
 Route::group(['middleware' => 'auth'], function () {
         Route::resource('menu-info', \App\Http\Controllers\UserConfig\SidebarController::class);
@@ -31,24 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('submitPermissions', [\App\Http\Controllers\UserConfig\RoleController::class, 'submitPermissions']);
         Route::post('/roles/data', [\App\Http\Controllers\UserConfig\RoleController::class, 'getData'])->name('roles.data');
 
-        Route::resource('distributor-info', \App\Http\Controllers\UserConfig\DistributorInfoController::class);
+        Route::resource('merchant-info', \App\Http\Controllers\merchant\MerchantInfoController::class);
         Route::get('getDisUserList', [\App\Http\Controllers\UserConfig\UserInfoController::class, 'getDisUserList']);
-        Route::post('/distributor-info/data', [\App\Http\Controllers\UserConfig\DistributorInfoController::class, 'getData'])->name('distributor-info.data');
-
-        Route::resource('ProType', \App\Http\Controllers\ProSetup\ProTypeController::class);
-        Route::post('/ProType/data', [\App\Http\Controllers\ProSetup\ProTypeController::class, 'getData'])->name('ProType.data');
-
-        Route::resource('ProCategory', \App\Http\Controllers\ProSetup\ProCategoryController::class);
-        Route::post('/ProCategory/data', [\App\Http\Controllers\ProSetup\ProCategoryController::class, 'getData'])->name('ProCategory.data');
-
-        Route::resource('ProSubCategory', \App\Http\Controllers\ProSetup\ProSubCategoryController::class);
-        Route::get('GetProCategory', [\App\Http\Controllers\ProSetup\ProSubCategoryController::class, 'GetProCategory']);
-        Route::post('/ProSubCategory/data', [\App\Http\Controllers\ProSetup\ProSubCategoryController::class, 'getData'])->name('ProSubCategory.data');
-
-        Route::resource('ProInfo', \App\Http\Controllers\ProSetup\ProInfoController::class);
-        Route::get('GetProSubCatByCatId', [\App\Http\Controllers\ProSetup\ProInfoController::class, 'GetProSubCatByCatId']);
-        Route::get('GetProType', [\App\Http\Controllers\ProSetup\ProInfoController::class, 'GetProType']);
-        Route::post('/ProInfo/data', [\App\Http\Controllers\ProSetup\ProInfoController::class, 'getData'])->name('ProInfo.data');
+        Route::post('/merchant-info/data', [\App\Http\Controllers\merchant\MerchantInfoController::class, 'getData'])->name('merchant-info.data');
 
         Route::resource('DivisionInfo', \App\Http\Controllers\LocConfig\DivisionInfoController::class);
         Route::post('/DivisionInfo/data', [\App\Http\Controllers\LocConfig\DivisionInfoController::class, 'getData'])->name('DivisionInfo.data');
@@ -73,9 +62,5 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::resource('MenuPermission', \App\Http\Controllers\Menu\MenuPermissionController::class);
 
-        Route::resource('product-stock', \App\Http\Controllers\Stock\ProductStockController::class);
-        Route::post('/ProductStock/data', [\App\Http\Controllers\Stock\ProductStockController::class, 'getData'])->name('ProductStock.data');
-        Route::get('/get-products', [\App\Http\Controllers\Stock\ProductStockController::class, 'getProducts']);
-        Route::post('/submit-stock', [\App\Http\Controllers\Stock\ProductStockController::class, 'store']);
 
 });

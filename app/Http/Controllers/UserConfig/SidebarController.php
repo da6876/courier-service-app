@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\UserConfig;
 
 use App\Http\Controllers\Controller;
-use App\Models\auth\Permission;
 use App\Models\Menu\Menu;
 use App\Models\ProSetup\ProType;
+use App\Models\UserConfig\Permission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -16,7 +15,7 @@ class SidebarController extends Controller
 {
     public function index()
     {
-        return view('UserConfig.side_bar');
+        return view('menuconfig.side_bar');
     }
     public function store(Request $request){
         try {

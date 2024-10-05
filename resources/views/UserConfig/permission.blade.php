@@ -1,4 +1,4 @@
-@section('title',"Permission")
+@section('title',"Permissions")
 @extends('layout.app')
 @section('style')
 @endsection

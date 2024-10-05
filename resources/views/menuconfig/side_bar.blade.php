@@ -1,4 +1,4 @@
-@section('title',"Pro. Type")
+@section('title',"Menus Info")
 @extends('layout.app')
 @section('main')
     <div class="content-wrapper">
@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body border-bottom">
                         <div class="d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-2 mb-md-0 text-uppercase fw-medium">Pro. Type</h6>
+                            <h6 class="mb-2 mb-md-0 text-uppercase fw-medium">Menu Info</h6>
                             <button class="btn btn-success btn-sm " type="button" onclick="showModal()"><i
                                     class="typcn typcn-plus"></i> Add New
                             </button>
@@ -22,8 +22,10 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Search Name</label>
-                                                <input type="text" id="name" name="name" class="form-control form-control-sm" placeholder="Search BY Name" aria-label="name">
+                                                <label>Search Title</label>
+                                                <input type="text" id="title" name="title"
+                                                       class="form-control form-control-sm"
+                                                       placeholder="Search BY Title" aria-label="name">
                                             </div>
                                         </div>
                                     </div>
@@ -33,7 +35,9 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>URL</th>
+                                    <th>Parent ID</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -65,14 +69,44 @@
                         <input type="hidden" name="id" id="id"/>
                         <div class="row g-2">
                             <div class="col mb-1">
-                                <label class="form-label" for="i_name">Name</label>
-                                <input type="text" id="i_name" name="i_name" class="form-control" placeholder="Enter Name" tabindex="-1"/>
+                                <label class="form-label" for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Enter Menu Name"
+                                       tabindex="-1"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col mb-1">
+                                <label class="form-label" for="url">URL</label>
+                                <input type="text" id="url" name="url" class="form-control" placeholder="Enter Url"
+                                       tabindex="-1"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col mb-1">
+                                <label class="form-label" for="icon">Icon</label>
+                                <input type="text" id="icon" name="icon" class="form-control" placeholder="Enter Icon"
+                                       tabindex="-1"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col mb-1">
+                                <label class="form-label" for="order">Icon</label>
+                                <input type="number" id="order" name="order" class="form-control"
+                                       placeholder="Enter Order Number" tabindex="-1"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col mb-1">
+                                <label class="form-label" for="parent_id">Parent Menu</label>
+                                <select class="form-select" name="parent_id" id="parent_id">
+                                    <option value="">Select Parent Menu</option>
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col mb-1">
                                 <label class="form-label">Select Status</label>
                                 <select class="form-select" name="status" id="status">
-                                    <option  value="">Select Status</option>
+                                    <option value="">Select Status</option>
                                     <option value="A">Active</option>
                                     <option value="I">InActive</option>
                                 </select>
@@ -97,11 +131,12 @@
     <script>
         function showModal() {
             $("#addModal form")[0].reset();
-            $("#addModal input[type='hidden']").not("[name='_token']").each(function() {
+            $("#addModal input[type='hidden']").not("[name='_token']").each(function () {
                 $(this).val('');
             });
             $(".modal-title").text("Add New");
             $("#addModal").modal("show");
+            getPrentMenu();
         }
 
         $(document).ready(function () {
@@ -109,16 +144,18 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('ProType.data') }}',
+                    url: '{{ route('menu-info.data') }}',
                     type: 'POST',
                     data: function (d) {
                         d._token = $('input[name="_token"]').val();
-                        d.name = $('input[name="name"]').val();
+                        d.title = $('input[name="title"]').val();
                     }
                 },
                 columns: [
                     {data: 'id'},
-                    {data: 'name'},
+                    {data: 'title'},
+                    {data: 'url'},
+                    {data: 'parent_id'},
                     {data: 'status'},
                     {
                         data: null,
@@ -148,7 +185,7 @@
             });
 
             // Handle Delete button click
-            $('#usersTable tbody').on('click', '.delete-btn', function() {
+            $('#usersTable tbody').on('click', '.delete-btn', function () {
                 var id = $(this).data('id');
                 Swal.fire({
                     title: "Are you sure?",
@@ -163,10 +200,10 @@
                         var csrf_token = $('meta[name="csrf-token"]').attr('content');
 
                         $.ajax({
-                            url: "{{ url('ProType') }}" + '/' + id,
+                            url: "{{ url('menu-info') }}" + '/' + id,
                             type: "POST",
                             data: {'_method': 'DELETE', '_token': csrf_token},
-                            success: function(response) {
+                            success: function (response) {
                                 if (response.statusCode == 200) {
                                     Swal.fire({
                                         title: "Deleted!",
@@ -178,7 +215,7 @@
                                 }
                                 $('#usersTable').DataTable().ajax.reload();
                             },
-                            error: function(xhr) {
+                            error: function (xhr) {
                                 Swal.fire({
                                     icon: "error",
                                     text: 'Delete failed: ' + xhr.responseText,
@@ -191,14 +228,14 @@
 
             });
 
-            $('#name, #email').on('change keyup', function () {
+            $('#title').on('change keyup', function () {
                 table.draw(); // Reload DataTable with new filters
             });
 
         });
 
         function addData() {
-            url = "{{ url('ProType') }}";
+            url = "{{ url('menu-info') }}";
             $.ajax({
                 url: url,
                 type: "POST",
@@ -215,21 +252,19 @@
                         $("#addModal form")[0].reset();
                         $("#addModal").modal("hide");
                         $('#usersTable').DataTable().ajax.reload();
-                    }else if (data.statusCode == 204) {
+                    } else if (data.statusCode == 204) {
                         showErrors(data.errors);
-                    }else{
+                    } else {
                         Swal.fire({
                             icon: "error",
                             text: data.statusMsg,
                         });
-
                     }
                 }, error: function (data) {
-                    var response = JSON.parse(data.responseText); // Parse the JSON response
-
+                    var response = JSON.parse(data.responseText);
                     Swal.fire({
-                        text: response.statusMsg || "Internal Server Error", // Use the status message or a default
-                        icon: "error" // Use an appropriate icon
+                        text: response.statusMsg || "Internal Server Error",
+                        icon: "error"
                     });
                 }
             });
@@ -238,11 +273,11 @@
 
         function showData(id) {
             $("#addModal form")[0].reset();
-            $("#addModal input[type='hidden']").not("[name='_token']").each(function() {
+            $("#addModal input[type='hidden']").not("[name='_token']").each(function () {
                 $(this).val('');
             });
             $.ajax({
-                url: "{{ url('ProType') }}" + '/' + id,
+                url: "{{ url('menu-info') }}" + '/' + id,
                 type: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -250,7 +285,12 @@
                     $('.modal-title').text('Update Data');
                     $('#addModal').modal('show');
                     $('#id').val(data.uid);
-                    $('#i_name').val(data.name);
+                    $('#name').val(data.title);
+                    $('#url').val(data.url);
+                    $('#icon').val(data.icon);
+                    $('#parent_id').val(data.parent_id);
+                    getPrentMenu(data.parent_id);
+                    $('#order').val(data.order);
                     $('#status').val(data.status);
                 }, error: function (data) {
                     var response = JSON.parse(data.responseText); // Parse the JSON response
@@ -263,5 +303,32 @@
             });
             return false;
         };
+
+        function getPrentMenu(selectedId = null){
+            $.ajax({
+                url: "{{ url('getPrentMenu') }}",
+                method: 'GET',
+                success: function(data) {
+                    if (Array.isArray(data) && data.length > 0) {
+                        var $select = $('#parent_id');
+                        $select.empty();
+                        $select.append('<option value="">Select a Parent Menu</option>');
+                        $.each(data, function(index, item) {
+                            $select.append($('<option>', {
+                                value: item.id,
+                                text: item.title,
+                                selected: item.id == selectedId
+                            }));
+                        });
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: "error",
+                        text: 'An error occurred:', xhr,
+                    });
+                }
+            });
+        }
     </script>
 @endsection

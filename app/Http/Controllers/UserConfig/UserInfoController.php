@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\UserConfig;
 
 use App\Http\Controllers\Controller;
-use App\Models\auth\User;
+use App\Models\UserConfig\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +21,6 @@ class UserInfoController extends Controller
 
     public function store(Request $request){
         try {
-
-
-
             if ($request['id']==""){
                 $validator = Validator::make($request->all(), [
                     'i_name' => 'required',
@@ -105,7 +102,6 @@ class UserInfoController extends Controller
             ]);
         }
     }
-
     public function destroy($id){
         try {
             $permission = User::findOrFail($id);
@@ -126,7 +122,6 @@ class UserInfoController extends Controller
             ));;
         }
     }
-
     public function show($id)
     {
         try {
@@ -139,13 +134,6 @@ class UserInfoController extends Controller
                 "statusMsg" => $e->getMessage()
             ]);
         }
-    }
-    private function generateCustomString()
-    {
-        $letters = Str::upper(Str::random(4));
-        $digits = rand(10, 99);
-
-        return $letters . $digits;
     }
 
     public function getUserList()
@@ -190,7 +178,7 @@ class UserInfoController extends Controller
     {
         return view('auth.login');
     }
-    
+
     public function registration()
     {
         return view('auth.registration');

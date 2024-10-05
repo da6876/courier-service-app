@@ -48,7 +48,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' =>  '3306',
-            'database' =>  'inventory-app',
+            'database' =>  'courier-app',
             'username' =>  'root',
             'password' =>  '',
             'unix_socket' => env('DB_SOCKET', ''),

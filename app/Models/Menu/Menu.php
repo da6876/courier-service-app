@@ -2,8 +2,8 @@
 
 namespace App\Models\Menu;
 
-use App\Models\auth\Permission;
-use App\Models\auth\User;
+use App\Models\UserConfig\Permission;
+use App\Models\UserConfig\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model

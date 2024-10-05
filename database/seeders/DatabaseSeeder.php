@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\auth\Permission;
+use App\Models\UserConfig\Permission;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

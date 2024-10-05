@@ -1,3 +1,3 @@
-## About Inventory APP
+## SOC Courier APP
 
-About Inventory APP:
+**SOC Courier APP**
