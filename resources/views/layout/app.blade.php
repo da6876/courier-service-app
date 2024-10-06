@@ -59,30 +59,6 @@
                         </form>
                     </div>
                 </li>
-                {{--@php
-                    use Carbon\Carbon;
-
-                    $lastLogin = Auth::user()->last_login;
-                    $now = Carbon::now();
-                    $duration = $now->diff($lastLogin);
-
-                    $days = $duration->days;
-                    $hours = $duration->h;
-                    $minutes = $duration->i;
-
-                    $parts = [];
-                    if ($days > 0) {
-                        $parts[] = $days . ' days';
-                    }
-                    if ($hours > 0) {
-                        $parts[] = $hours . ' hours';
-                    }
-                    if ($minutes > 0) {
-                        $parts[] = $minutes . ' minutes';
-                    }
-
-                    $formattedDuration = implode(' ', $parts) . ' ago';
-                @endphp--}}
                 <li class="nav-item nav-user-status dropdown">
                     <p class="mb-0">Last login was {{ Auth::user()->last_login->diffForHumans() }}.</p>
                 </li>
@@ -139,6 +115,7 @@
                         </a>
                     </div>
                 </li>
+
                 <li class="nav-item dropdown me-0">
                     <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
                         <i class="typcn typcn-bell mx-0"></i>
@@ -185,6 +162,26 @@
                                 </p>
                             </div>
                         </a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown me-1">
+                    <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+                        <img src="{{ asset('assets/images/faces/face5.jpg') }}" width="40px" alt="profile"/>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                        <a class="dropdown-item" href="#">
+                            <i class="typcn typcn-cog-outline text-primary"></i>
+                            Settings
+                        </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="typcn typcn-eject text-primary"></i>
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
                     </div>
                 </li>
             </ul>

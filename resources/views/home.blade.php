@@ -2,6 +2,7 @@
 @section('title',"Home")
 @extends('layout.app')
 @section('main')
+
 <div class="content-wrapper">
 
     <div class="row">

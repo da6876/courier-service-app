@@ -18,7 +18,6 @@ class UserInfoController extends Controller
     {
         return view('UserConfig.userinfo');
     }
-
     public function store(Request $request){
         try {
             if ($request['id']==""){
@@ -135,7 +134,6 @@ class UserInfoController extends Controller
             ]);
         }
     }
-
     public function getUserList()
     {
         $users = User::where('status', '!=', 'Deleted')->get();

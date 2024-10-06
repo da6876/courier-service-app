@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2024 at 12:38 PM
+-- Generation Time: Oct 06, 2024 at 02:02 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,6 +71,40 @@ INSERT INTO `change_log` (`log_id`, `table_name`, `operation_type`, `record_id`,
 (26, 'pro_info', 'UPDATE', 11040000, '{\"product_name\": \"Dia Salt Biscuit\", \"product_type_id\": 11010000, \"Categorie_id\": 11020000, \"sub_Categorie_id\": 11030000, \"shot_decs\": \"Dia Salt Biscuit\", \"decs\": \"0\", \"Gm\": \"PCS\", \"Pcs_Per_Ctn\": \"10\", \"dp_unit\": 0, \"rp_unit\": 0, \"mrp_unit\": 0, \"product_sku_code\": \"SKU-99E2322A\", \"product_image\": \"assets/product_img/66e7ca643b649.png\", \"product_image2\": \"No Image\", \"status\": \"A\", \"create_by\": \"2\", \"create_date\": \"2024-09-12 01:58:45\", \"update_by\": \"2\", \"update_date\": \"2024-09-16 12:04:20\"}', '{\"product_name\": \"Dia Salt Biscuit\", \"product_type_id\": 11010000, \"Categorie_id\": 11020000, \"sub_Categorie_id\": 11030000, \"shot_decs\": \"Dia Salt Biscuit\", \"decs\": \"0\", \"Gm\": \"PCS\", \"Pcs_Per_Ctn\": \"10\", \"dp_unit\": 0, \"rp_unit\": 0, \"mrp_unit\": 0, \"product_sku_code\": \"SKU-99E2322A\", \"product_image\": \"assets/product_img/66e7cab01d995.png\", \"product_image2\": \"No Image\", \"status\": \"A\", \"create_by\": \"2\", \"create_date\": \"2024-09-12 01:58:45\", \"update_by\": \"2\", \"update_date\": \"2024-09-16 12:05:36\"}', 'root@localhost', '2024-09-16 12:05:36'),
 (27, 'pro_info', 'UPDATE', 11040001, '{\"product_name\": \"Econo Dia Salt Biscuit\", \"product_type_id\": 11010000, \"Categorie_id\": 11020000, \"sub_Categorie_id\": 11030000, \"shot_decs\": \"Econo Dia Salt Biscuit\", \"decs\": \"0\", \"Gm\": \"PCS\", \"Pcs_Per_Ctn\": \"12\", \"dp_unit\": 0, \"rp_unit\": 0, \"mrp_unit\": 0, \"product_sku_code\": \"SKU-99E23D8B\", \"product_image\": \"3232222\", \"product_image2\": \"No Image\", \"status\": \"I\", \"create_by\": \"2\", \"create_date\": \"2024-09-12 02:01:33\", \"update_by\": \"2\", \"update_date\": \"2024-09-16 00:10:19\"}', '{\"product_name\": \"Econo Dia Salt Biscuit\", \"product_type_id\": 11010000, \"Categorie_id\": 11020000, \"sub_Categorie_id\": 11030000, \"shot_decs\": \"Econo Dia Salt Biscuit\", \"decs\": \"0\", \"Gm\": \"PCS\", \"Pcs_Per_Ctn\": \"12\", \"dp_unit\": 0, \"rp_unit\": 0, \"mrp_unit\": 0, \"product_sku_code\": \"SKU-99E23D8B\", \"product_image\": \"assets/product_img/66e7cad0d80de.jpg\", \"product_image2\": \"No Image\", \"status\": \"A\", \"create_by\": \"2\", \"create_date\": \"2024-09-12 02:01:33\", \"update_by\": \"2\", \"update_date\": \"2024-09-16 12:06:08\"}', 'root@localhost', '2024-09-16 12:06:08'),
 (28, 'pro_info', 'UPDATE', 11040003, '{\"product_name\": \"Horlicks Biscuit\", \"product_type_id\": 11010000, \"Categorie_id\": 11020000, \"sub_Categorie_id\": 11030001, \"shot_decs\": \"Horlicks Biscuit\", \"decs\": \"0\", \"Gm\": \"PCS\", \"Pcs_Per_Ctn\": \"15\", \"dp_unit\": 0, \"rp_unit\": 0, \"mrp_unit\": 0, \"product_sku_code\": \"SKU-F1A89F83\", \"product_image\": \"AAAAAA\", \"product_image2\": \"No Image\", \"status\": \"A\", \"create_by\": \"2\", \"create_date\": \"2024-09-13 11:11:07\", \"update_by\": \"2\", \"update_date\": \"2024-09-16 00:10:44\"}', '{\"product_name\": \"Horlicks Biscuit\", \"product_type_id\": 11010000, \"Categorie_id\": 11020000, \"sub_Categorie_id\": 11030001, \"shot_decs\": \"Horlicks Biscuit\", \"decs\": \"0\", \"Gm\": \"PCS\", \"Pcs_Per_Ctn\": \"15\", \"dp_unit\": 0, \"rp_unit\": 0, \"mrp_unit\": 0, \"product_sku_code\": \"SKU-F1A89F83\", \"product_image\": \"assets/product_img/66e7cae9d464f.png\", \"product_image2\": \"No Image\", \"status\": \"A\", \"create_by\": \"2\", \"create_date\": \"2024-09-13 11:11:07\", \"update_by\": \"2\", \"update_date\": \"2024-09-16 12:06:33\"}', 'root@localhost', '2024-09-16 12:06:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery`
+--
+
+CREATE TABLE `delivery` (
+  `id` int(20) NOT NULL,
+  `uid` varchar(100) DEFAULT NULL,
+  `store_id` int(10) DEFAULT NULL,
+  `prod_type_id` int(10) DEFAULT NULL,
+  `merchant_order_id` int(10) DEFAULT NULL,
+  `recipient_phone` varchar(15) DEFAULT NULL,
+  `recipient_sec_phone` varchar(15) DEFAULT NULL,
+  `recipient_name` varchar(150) DEFAULT NULL,
+  `recipient_address` varchar(255) DEFAULT NULL,
+  `div_id` int(10) DEFAULT NULL,
+  `dis_id` int(10) DEFAULT NULL,
+  `out_id` int(10) DEFAULT NULL,
+  `thn_id` int(10) DEFAULT NULL,
+  `special_remark` varchar(255) DEFAULT NULL,
+  `delivery_type` varchar(25) DEFAULT NULL,
+  `total_weight` varchar(20) DEFAULT NULL,
+  `quantity` varchar(20) DEFAULT NULL,
+  `amount_to_collect` varchar(20) DEFAULT NULL,
+  `price` varchar(20) DEFAULT NULL,
+  `item_description` text DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `create_by` varchar(20) DEFAULT NULL,
+  `create_date` varchar(20) DEFAULT NULL,
+  `update_by` varchar(20) DEFAULT NULL,
+  `update_date` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -597,8 +631,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('6Y4iklKpSEqcwgxH4r2pKcZDhMq5xvtpGZwfTyfR', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoib1g1dHNsUzFCQW9iVHd0cm0xOVhTS3pnWTl0bWVhdTNlRGVUZVVrViI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1728124456),
-('JQK72WvKAokfzYbfSzSa7GLtNYsSk3mrdyYqrt2w', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoidmJpRTBPY2FNYnhPN1Z5ZTU5NlZqaDVkb2d0WEU4SVhZa2lpaUNXaSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTU7fQ==', 1728124407);
+('DES1xpdj3tzeV1DYOF1wVJuugHnO4j51cux5Ckq5', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaTl6UDVVQWJNNUVvNWJlU2pzRm00VG94bWlHSjF0Z09tRm14RDAwTyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3N0b3JlIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9pbnZvaWNlcyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE1O30=', 1728215480);
 
 -- --------------------------------------------------------
 
@@ -787,6 +820,39 @@ INSERT INTO `soc_thana` (`id`, `div_id`, `dis_id`, `uid`, `name`, `status`, `cre
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `store`
+--
+
+CREATE TABLE `store` (
+  `id` int(10) NOT NULL,
+  `user_id` int(10) NOT NULL,
+  `uid` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `store_name` varchar(100) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `contact_phone` varchar(15) DEFAULT NULL,
+  `secondary_phone` varchar(15) DEFAULT NULL,
+  `div_id` int(10) DEFAULT NULL,
+  `dis_id` int(10) DEFAULT NULL,
+  `out_id` int(10) DEFAULT NULL,
+  `thn_id` int(10) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `create_by` varchar(10) DEFAULT NULL,
+  `create_date` varchar(20) DEFAULT NULL,
+  `update_by` varchar(10) DEFAULT NULL,
+  `update_date` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `store`
+--
+
+INSERT INTO `store` (`id`, `user_id`, `uid`, `email`, `store_name`, `address`, `contact_phone`, `secondary_phone`, `div_id`, `dis_id`, `out_id`, `thn_id`, `status`, `create_by`, `create_date`, `update_by`, `update_date`) VALUES
+(1, 15, '9f3f2e3c-9db9-4534-99f5-2bd96e7252e6', 'teststore@gmail.com', 'Test Store', 'Dhaka', '01315007287', '455454', 11000, 12000, 14001, 8, 'A', '15', '2024-10-06 16:54:26', '15', '2024-10-06 17:23:17');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -818,12 +884,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `uid`, `role_id`, `name`, `user_name`, `email`, `email_verified_at`, `password`, `longitude`, `latitude`, `ip`, `mac`, `last_login`, `status`, `create_by`, `create_date`, `update_date`, `update_by`, `token`) VALUES
 (1, 'admin001', 2, 'Admin User', 'adminuser', 'admin@example.com', '2024-09-05 01:36:50', '$2y$10$YHLibwvE5HlgD6J4XAWRreZ2RIoKwVjALBKey.Gam3Rbjuatg9b/6', '90.361361', '23.7857505', '103.112.236.26', '00:00:00:00:00:00', '2024-09-14 01:20:18', 'A', 'system', '2024-09-05 07:36:50', '2024-09-23 01:05:28', '2', 'z4Jmb8VgX8nuDefCXtW9FIA6arX7xxexFR9ozB7Z'),
-(2, 'superadmin001', 1, 'Super Admin', 'superadmin', 'superadmin@example.com', '2024-09-05 01:36:50', '$2y$10$hpF5dW9/hiTn0/lHZMOCe.qqD9j3mNAIXFNbNHPYtnQtEBXhT7Kdy', '90.4135522183934', '23.742624724208085', '163.53.150.94', '00:00:00:00:00:01', '2024-10-05 16:33:00', 'A', 'system', '2024-09-05 07:36:50', 'oX5tslS1BAobTwtrm19XSKzgY9tmeau3eDeTeUkV', '2', 'oX5tslS1BAobTwtrm19XSKzgY9tmeau3eDeTeUkV'),
+(2, 'superadmin001', 1, 'Super Admin', 'superadmin', 'superadmin@example.com', '2024-09-05 01:36:50', '$2y$10$hpF5dW9/hiTn0/lHZMOCe.qqD9j3mNAIXFNbNHPYtnQtEBXhT7Kdy', '90.41357674009461', '23.742406497043167', '163.53.150.94', '00:00:00:00:00:01', '2024-10-06 12:09:28', 'A', 'system', '2024-09-05 07:36:50', 'QzimdEP4bbpbW0JtPAVqCRcaHhBlxlgchciw6uZg', '2', 'QzimdEP4bbpbW0JtPAVqCRcaHhBlxlgchciw6uZg'),
 (10, 'cf1ba2ab-8f08-4cde-a50d-8e134ae5c170', NULL, 'Test44', 'TCZI13', 'test33@gmail.com', NULL, '$2y$10$cQIJBCClH2mmvEY5ng4nYO.JAhivqfDO04/CBD5E5x3sWqc02RAUK', '0.0', '0.0', '0.0', '0.0', '1970-01-01 06:00:00', 'Deleted', '2', '2024-09-09 02:23:36', '2024-09-15 17:28:48', '2', 'ziBbKqYjYLajmT69JHJnrsnEbd0Nf0ZxybzxWIE2OmHoWq1QvF26ctE9LTg7'),
 (11, '6da584ba-c720-4ca0-8682-736a3deb7ddf', 11050004, 'Distributor1', 'KJDD64', 'distributor1@gmail.com', NULL, '$2y$10$UgUueWj56KKQNfmQCXbzUuT/bN2IQRJaYXLZCfI5KtGkJL0XRD3Qq', '90.3613563', '23.7857501', '103.112.236.26', '0.0', '2024-09-22 01:36:14', 'A', '2', '2024-09-15 18:23:39', '6T4qaTIvqukBiGfIZIlkJaWEmXP7jO3AHgU7m1MM', '11', '6T4qaTIvqukBiGfIZIlkJaWEmXP7jO3AHgU7m1MM'),
 (12, '68863927-e812-46f7-8f66-a0e762b9dea1', 11050004, 'Distributor2', 'HQBI84', 'distributor2@gmail.com', NULL, '$2y$10$Rge8gbnK8U6K..FCYGcqAePISUw/kA1YaI0zFl3msgV6Owz4imEuG', '0.0', '0.0', '0.0', '0.0', '1970-01-01 06:00:00', 'A', '2', '2024-09-15 18:24:06', '2024-09-15 19:04:51', '2', '2TSsQXNjl7v8XawbSQkPGYa2xdmzws7nUccDNKII2IL32MzJSBSngF2C6Ku1'),
 (14, '66ee788be50a0', 3, 'Admin User', 'admin', 'admin@soc.com', NULL, '$2y$10$uWCnzuh6.2o1cmd7P18dzOq4pxoD85rfbZscoxFwf0yMpb.w1pv.2', '0', '0', '127.0.0.1', '00:00:00:00:00:00', '2024-09-21 13:40:59', 'A', 'system', '2024-09-21 13:40:59', '2024-09-23 01:05:41', '2', 'dBbH0KzwFKrPtxnydo8AL7RhyzCNGzOhdyQvuQGVKUmREyZoS2e67GXcZeVs'),
-(15, 'c38316ac-7ff7-490f-86f7-feb029d05dd9', 4, 'Rifat Hossion', 'SALL15', 'abirdhali49@gmail.com', NULL, '$2y$10$7XiEVKqIMKLdJEoMZhxa/.fuPHH5xtKnBi01EsrlxNYU02iRUKrgm', '90.4138165', '23.7426509', '163.53.150.94', '0.0', '2024-10-05 16:33:27', 'A', 'abirdhali49@gmail.com', '2024-10-05 15:58:34', 'vbiE0OcaMbxO7Vye596Vjh5dogtXE8IXYkiiiCWi', '15', 'vbiE0OcaMbxO7Vye596Vjh5dogtXE8IXYkiiiCWi');
+(15, 'c38316ac-7ff7-490f-86f7-feb029d05dd9', 4, 'Rifat Hossion', 'SALL15', 'abirdhali49@gmail.com', NULL, '$2y$10$7XiEVKqIMKLdJEoMZhxa/.fuPHH5xtKnBi01EsrlxNYU02iRUKrgm', '90.4138291', '23.7426666', '163.53.150.94', '0.0', '2024-10-06 15:40:06', 'A', 'abirdhali49@gmail.com', '2024-10-05 15:58:34', 'i9zP5UAbM5Eo5beSjsFm4ToxmiGJ1tgOmFmxD00O', '15', 'i9zP5UAbM5Eo5beSjsFm4ToxmiGJ1tgOmFmxD00O');
 
 --
 -- Indexes for dumped tables
@@ -834,6 +900,12 @@ INSERT INTO `users` (`id`, `uid`, `role_id`, `name`, `user_name`, `email`, `emai
 --
 ALTER TABLE `change_log`
   ADD PRIMARY KEY (`log_id`);
+
+--
+-- Indexes for table `delivery`
+--
+ALTER TABLE `delivery`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -939,6 +1011,12 @@ ALTER TABLE `soc_thana`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `store`
+--
+ALTER TABLE `store`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -956,6 +1034,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `change_log`
   MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `delivery`
+--
+ALTER TABLE `delivery`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1028,6 +1112,12 @@ ALTER TABLE `soc_outlet`
 --
 ALTER TABLE `soc_thana`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `store`
+--
+ALTER TABLE `store`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
