@@ -5,51 +5,56 @@
         <div class="row">
             <div class="col-xl-12 grid-margin stretch-card">
                 <div class="card">
+                    <div class="card-body border-bottom">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-2 mb-md-0 text-uppercase fw-medium">Invoices  (Last 90 Days)</h6>
+                        </div>
+                    </div>
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-3 grid-margin stretch-card">
+                            <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
                                             <div>
                                                 <p class="mb-2 text-md-center text-lg-left">Total Collected</p>
-                                                <h1 class="mb-0">৳ 0</h1>
+                                                <h1 class="mb-0" id="totalCollected">৳ 0</h1>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 grid-margin stretch-card">
+                            <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
                                             <div>
                                                 <p class="mb-2 text-md-center text-lg-left">Total Receivable</p>
-                                                <h1 class="mb-0">৳ 0</h1>
+                                                <h1 class="mb-0" id="totalReceivable">৳ 0</h1>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 grid-margin stretch-card">
+                            <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
                                             <div>
                                                 <p class="mb-2 text-md-center text-lg-left">Total Received</p>
-                                                <h1 class="mb-0">৳ 0</h1>
+                                                <h1 class="mb-0" id="totalReceived">৳ 0</h1>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 grid-margin stretch-card">
+                            <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
                                             <div>
                                                 <p class="mb-2 text-md-center text-lg-left">Total Fee</p>
-                                                <h1 class="mb-0">৳ 0</h1>
+                                                <h1 class="mb-0" id="totalFee">৳ 0</h1>
                                             </div>
                                         </div>
                                     </div>
@@ -57,13 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body border-bottom">
-                        <div class="d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-2 mb-md-0 text-uppercase fw-medium">All Invoices</h6>
 
-
-                        </div>
-                    </div>
                     <div class="card-body">
                         <div class="table-responsive pt-3">
                             <div>
@@ -85,6 +84,9 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Status</th>
+                                    <th>Status</th>
+                                    <th>Status</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -100,90 +102,65 @@
         </div>
     </div>
 
-    <!-- =================================================Add Customers=========================================================== -->
-    <div class="modal fade bd-example-modal-lg" id="addModal" tabindex="-1" role="dialog"
-         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="invoiceModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Modal title</h5>
+                    <h5 class="modal-title" id="invoiceModalLabel">Invoice Report</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addRoleForm" class="row g-3" onsubmit="return false">
-                        @csrf
-                        <input type="hidden" name="id" id="id"/>
-                        <div class="row g-2">
-                            <div class="col mb-1">
-                                <label class="form-label" for="i_name">Name</label>
-                                <input type="text" id="i_name" name="i_name" class="form-control" placeholder="Enter Name" tabindex="-1"/>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="row g-2">
-                            <div class="col mb-1">
-                                <label class="form-label">Division</label>
-                                <select class="form-select" name="div_id" id="div_id">
-                                    <option  value="">Select Division</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col mb-1">
-                                <label class="form-label">Division</label>
-                                <select class="form-select" name="dis_id" id="dis_id">
-                                    <option  value="">Select Division</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col mb-1">
-                                <label class="form-label">Thana</label>
-                                <select class="form-select" name="tha_id" id="tha_id">
-                                    <option  value="">Select Thana</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col mb-1">
-                                <label class="form-label">Area</label>
-                                <select class="form-select" name="ara_id" id="ara_id">
-                                    <option  value="">Select Area</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col mb-1">
-                                <label class="form-label">Select Status</label>
-                                <select class="form-select" name="status" id="status">
-                                    <option  value="">Select Status</option>
-                                    <option value="A">Active</option>
-                                    <option value="I">InActive</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
-
-                    </form>
+                    <p>Date: <span id="invoiceDate"></span></p>
+                    <p>Invoice Number: <span id="invoiceNumber"></span></p>
+                    <hr />
+                    <table id="invoiceTable" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                        <tr>
+                            <th style="border: 1px solid #000; padding: 8px;">Tracking Number</th>
+                            <th style="border: 1px solid #000; padding: 8px;">Recipient Name</th>
+                            <th style="border: 1px solid #000; padding: 8px;">Phone</th>
+                            <th style="border: 1px solid #000; padding: 8px;">Address</th>
+                            <th style="border: 1px solid #000; padding: 8px;">Price</th>
+                            <th style="border: 1px solid #000; padding: 8px;">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody id="invoiceTableBody"></tbody>
+                    </table>
+                    <hr />
+                    <div>
+                        <h3>Total Amount: <span id="totalAmount"></span></h3>
+                    </div>
                 </div>
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="addData()" class="btn btn-primary">Save changes</button>
+                    <button type="button" onclick="printInvoice()" class="btn btn-primary">Print Me</button>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
 @section('script')
 
     <script>
-        function showModal() {
-            $("#addModal form")[0].reset();
-            $("#addModal input[type='hidden']").not("[name='_token']").each(function() {
-                $(this).val('');
-            });
-            $(".modal-title").text("Add New");
-            $("#addModal").modal("show");
+        function countTo(selector, startValue, endValue, duration) {
+            let startTime = null;
+
+            const animate = (currentTime) => {
+                if (!startTime) startTime = currentTime;
+                const elapsed = currentTime - startTime;
+
+                // Calculate the current value
+                const progress = Math.min(elapsed / duration, 1); // Ensure it doesn't exceed 1
+                const currentValue = Math.floor(startValue + (endValue - startValue) * progress);
+
+                $(selector).text(`৳ ${currentValue}`);
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate); // Continue the animation
+                }
+            };
+
+            requestAnimationFrame(animate); // Start the animation
         }
 
         $(document).ready(function () {
@@ -191,24 +168,37 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('OutletInfo.data') }}',
+                    url: '{{ route('invoicesInfo.data') }}',
                     type: 'POST',
                     data: function (d) {
                         d._token = $('input[name="_token"]').val();
                         d.name = $('input[name="name"]').val();
+                    },
+                    // Fetch totals along with DataTable data
+                    complete: function (data) {
+                        // Assuming the totals are included in the response data
+                        const totals = data.responseJSON.totals;
+                        if (totals) {
+                            countTo('#totalCollected', parseFloat($('#totalCollected').text().replace(/[৳ ,]/g, '')), totals.total_collected, 1000);
+                            countTo('#totalReceivable', parseFloat($('#totalReceivable').text().replace(/[৳ ,]/g, '')), totals.total_receivable, 1000);
+                            countTo('#totalReceived', parseFloat($('#totalReceived').text().replace(/[৳ ,]/g, '')), totals.total_received, 1000);
+                            countTo('#totalFee', parseFloat($('#totalFee').text().replace(/[৳ ,]/g, '')), totals.total_fee, 1000);
+                        }
                     }
                 },
                 columns: [
-                    {data: 'id'},
-                    {data: 'name'},
-                    {data: 'status'},
+                    {data: 'tracking_number', title: 'Tracking Number'},
+                    {data: 'recipient_name', title: 'Recipient Name'},
+                    {data: 'recipient_phone', title: 'Recipient Phone'},
+                    {data: 'recipient_address', title: 'Recipient Address'},
+                    {data: 'price', title: 'Price'},
+                    {data: 'status', title: 'Status'},
                     {
                         data: null,
                         render: function (data, type, row) {
                             return `
-                                <button type="button" class="btn btn-outline-success btn-sm btn-icon-text edit-btn" data-id="${row.uid}"><i class="typcn typcn-edit btn-icon-append"></i></button>
-                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon-text delete-btn" data-id="${row.uid}"><i class="typcn typcn-delete-outline btn-icon-append"></i></button>
-                            `;
+                        <button type="button" class="btn btn-sm btn-info btn-icon-text edit-btn" data-id="${row.tracking_number}"><i class="typcn typcn-printer "></i></button>
+                    `;
                         },
                         orderable: false,
                         searchable: false
@@ -220,279 +210,94 @@
 
             $('#usersTable tbody').on('click', '.edit-btn', function () {
                 var id = $(this).data('id');
-                showData(id);
-            });
-
-            // Handle Update button click
-            $('#usersTable tbody').on('click', '.update-btn', function () {
-                var data = table.row($(this).parents('tr')).data();
-                console.log('Update button clicked for:', data);
-            });
-
-            // Handle Delete button click
-            $('#usersTable tbody').on('click', '.delete-btn', function() {
-                var id = $(this).data('id');
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var csrf_token = $('meta[name="csrf-token"]').attr('content');
-
-                        $.ajax({
-                            url: "{{ url('OutletInfo') }}" + '/' + id,
-                            type: "POST",
-                            data: {'_method': 'DELETE', '_token': csrf_token},
-                            success: function(response) {
-                                if (response.statusCode == 200) {
-                                    Swal.fire({
-                                        title: "Deleted!",
-                                        text: "Your file has been deleted.",
-                                        icon: "success"
-                                    });
-                                } else {
-                                    Swal.fire("Error occured !!");
-                                }
-                                $('#usersTable').DataTable().ajax.reload();
-                            },
-                            error: function(xhr) {
-                                alert('Delete failed: ' + xhr.responseText);
-                            }
-                        });
-
-                    }
-                });
-
-            });
-
-            $('#name, #email').on('change keyup', function () {
-                table.draw(); // Reload DataTable with new filters
+                alert(id);
+                generateInvoice(id);
             });
 
         });
 
-        function addData() {
-            url = "{{ url('OutletInfo') }}";
+        function generateInvoice(trackingNumber) {
+            var urlGetInvoice = '{{url('path/to/get/invoice/data')}}';
             $.ajax({
-                url: url,
-                type: "POST",
-                data: new FormData($("#addModal form")[0]),
-                contentType: false,
-                processData: false,
+                url: urlGetInvoice,
+                type: 'GET',
+                data: { tracking_number: trackingNumber },
                 success: function (data) {
-                    if (data.statusCode == 200) {
-                        Swal.fire({
-                            title: "Success!",
-                            text: data.statusMsg,
-                            icon: "success"
-                        });
-                        $("#addModal form")[0].reset();
-                        $("#addModal").modal("hide");
-                        $('#usersTable').DataTable().ajax.reload();
-                    }else if (data.statusCode == 204) {
-                        showErrors(data.errors);
-                    }else{
-                        Swal.fire({
-                            icon: "error",
-                            text: data.statusMsg,
-                        });
+                    // Assuming 'data' contains the invoice details
+                    $('#invoiceDate').text(new Date().toLocaleDateString());
+                    $('#invoiceNumber').text('INV-' + Math.floor(Math.random() * 100000)); // Generate a random invoice number
 
-                    }
-                }, error: function (data) {
-                    Swal.fire({
-                        text: "Internal Server Error",
-                        icon: "question"
-                    });
-                }
-            });
-            return false;
-        };
+                    // Clear existing rows
+                    $('#invoiceTableBody').empty();
 
-        function showData(id) {
-            $("#addModal form")[0].reset();
-            $("#addModal input[type='hidden']").not("[name='_token']").each(function() {
-                $(this).val('');
-            });
-            $("#addModal").modal("show");
-            $("#pass").hide();
+                    let totalAmount = 0;
 
-            $.ajax({
-                url: "{{ url('OutletInfo') }}" + '/' + id,
-                type: "GET",
-                dataType: "JSON",
-                success: function (data) {
-                    $('#addModal form')[0].reset();
-                    $('.modal-title').text('Update Data');
-                    $('#addModal').modal('show');
-                    $('#id').val(data.uid);
-                    $('#i_name').val(data.name);
-                    $('#status').val(data.status);
-                    getDistrict(data.div_id, data.dis_id);
-                    getThana(data.div_id, data.dis_id, data.tha_id);
-                    getThana(data.div_id, data.dis_id, data.tha_id);
-                    getArea(data.div_id, data.dis_id, data.tha_id, data.ara_id);
-                }, error: function () {
-                    swal({
-                        title: "Oops",
-                        text: "Error Occured",
-                        icon: "error",
-                        timer: '1500'
-                    });
-                }
-            });
-            return false;
-        };
+                    // Populate invoice details
+                    const row = `
+                <tr>
+                    <td style="border: 1px solid #000; padding: 8px;">${data.tracking_number}</td>
+                    <td style="border: 1px solid #000; padding: 8px;">${data.recipient_name}</td>
+                    <td style="border: 1px solid #000; padding: 8px;">${data.recipient_phone}</td>
+                    <td style="border: 1px solid #000; padding: 8px;">${data.recipient_address}</td>
+                    <td style="border: 1px solid #000; padding: 8px;">৳ ${parseFloat(data.price).toFixed(2)}</td>
+                    <td style="border: 1px solid #000; padding: 8px;">${data.status}</td>
+                </tr>
+            `;
+                    $('#invoiceTableBody').append(row);
+                    totalAmount += parseFloat(data.price);
 
-        $.ajax({
-            url: "{{ url('GetDivisionInfo') }}",
-            method: 'GET',
-            success: function(data) {
-                if (Array.isArray(data) && data.length > 0) {
-                    var $select = $('#div_id');
-                    $select.empty();
-                    $select.append('<option value="">Select a Division</option>');
-                    $.each(data, function(index, item) {
-                        $select.append($('<option>', {
-                            value: item.id,
-                            text: item.name
-                        }));
-                    });
-                }
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    icon: "error",
-                    text: 'An error occurred:', xhr,
-                });
-            }
-        });
+                    $('#totalAmount').text(`৳ ${totalAmount.toFixed(2)}`);
 
-        $('#div_id').change(function() {
-            var divisionId = $(this).val();
-            if (divisionId) {
-                getDistrict(divisionId)
-            } else {
-                $('#dis_id').empty().append('<option value="">Select a District</option>');
-            }
-        });
-
-        function  getDistrict(divId, selecteddivId = null){
-            $.ajax({
-                url: "{{ url('GetDistrict') }}",
-                method: 'GET',
-                data: { divId: divId },
-                success: function(data) {
-                    var $select = $('#dis_id');
-                    if (Array.isArray(data) && data.length > 0) {
-                        $select.empty();
-                        $select.append('<option value="">Select a District</option>');
-                        $.each(data, function(index, item) {
-                            $select.append($('<option>', {
-                                value: item.id,
-                                text: item.name,
-                                selected: item.id == selecteddivId
-                            }));
-                        });
-                    }else {
-                        $select.empty();
-                        $select.append('<option value="">Select a District</option>');
-                    }
+                    // Show the modal
+                    $('#invoiceModal').modal('show');
                 },
-                error: function(xhr) {
-                    Swal.fire({
-                        icon: "error",
-                        text: 'An error occurred:', xhr,
-                    });
+                error: function (xhr) {
+                    console.error('Error fetching invoice data:', xhr);
+                    alert('Failed to fetch invoice data.');
                 }
             });
         }
 
-        $('#dis_id').change(function() {
-            var districtId = $(this).val();
-            var divId = $('#div_id').val();
-            if (districtId) {
-                getThana(divId,districtId)
-            } else {
-                $('#dis_id').empty().append('<option value="">Select a Thana</option>');
-            }
-        });
+        function printInvoice() {
+            const invoiceContent = `
+                    <html>
+                        <head>
+                            <title>Invoice</title>
+                            <style>
+                                table { width: 100%; border-collapse: collapse; }
+                                th, td { border: 1px solid black; padding: 8px; }
+                            </style>
+                        </head>
+                        <body>
+                            <h1>Invoice Report</h1>
+                            <p>Date: ${$('#invoiceDate').text()}</p>
+                            <p>Invoice Number: ${$('#invoiceNumber').text()}</p>
+                            <hr />
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tracking Number</th>
+                                        <th>Recipient Name</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${$('#invoiceTableBody').html()}
+                                </tbody>
+                            </table>
+                            <hr />
+                            <h3>Total Amount: ${$('#totalAmount').text()}</h3>
+                        </body>
+                    </html>
+                `;
 
-        function  getThana(divId, dis_id, selectedTha = null){
-            $.ajax({
-                url: "{{ url('GetThana') }}",
-                method: 'GET',
-                data: { divId: divId,dis_id:dis_id },
-                success: function(data) {
-                    var $select = $('#tha_id');
-                    if (Array.isArray(data) && data.length > 0) {
-                        $select.empty();
-                        $select.append('<option value="">Select a Thana</option>');
-                        $.each(data, function(index, item) {
-                            $select.append($('<option>', {
-                                value: item.id,
-                                text: item.name,
-                                selected: item.id == selectedTha
-                            }));
-                        });
-                    }else {
-                        $select.empty();
-                        $select.append('<option value="">Select a Thana</option>');
-                    }
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        icon: "error",
-                        text: 'An error occurred:', xhr,
-                    });
-                }
-            });
-        }
-
-        $('#tha_id').change(function() {
-            var thaId = $(this).val();
-            var divId = $('#div_id').val();
-            var disId = $('#dis_id').val();
-            if (thaId) {
-                getArea(divId,disId,thaId)
-            } else {
-                $('#ara_id').empty().append('<option value="">Select a Area</option>');
-            }
-        });
-
-        function  getArea(divId, dis_id, thaId, selectedAra = null){
-            $.ajax({
-                url: "{{ url('GetArea') }}",
-                method: 'GET',
-                data: { divId: divId,dis_id:dis_id ,thaId:thaId },
-                success: function(data) {
-                    var $select = $('#ara_id');
-                    if (Array.isArray(data) && data.length > 0) {
-                        $select.empty();
-                        $select.append('<option value="">Select a Area</option>');
-                        $.each(data, function(index, item) {
-                            $select.append($('<option>', {
-                                value: item.id,
-                                text: item.name,
-                                selected: item.id == selectedAra
-                            }));
-                        });
-                    }else {
-                        $select.empty();
-                        $select.append('<option value="">Select a Area</option>');
-                    }
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        icon: "error",
-                        text: 'An error occurred:', xhr,
-                    });
-                }
-            });
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write(invoiceContent);
+            printWindow.document.close();
+            printWindow.print();
         }
     </script>
 @endsection

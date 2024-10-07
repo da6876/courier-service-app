@@ -59,13 +59,23 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/OutletInfo/data', [\App\Http\Controllers\LocConfig\OutletInfoController::class, 'getData'])->name('OutletInfo.data');
 
     Route::resource('store', \App\Http\Controllers\store\StoreController::class);
-    Route::get('getStore', [\App\Http\Controllers\store\StoreController::class, 'GetArea']);
     Route::post('/storeInfo/data', [\App\Http\Controllers\store\StoreController::class, 'getData'])->name('storeInfo.data');
 
     Route::resource('invoices', \App\Http\Controllers\store\InvoicesController::class);
+    Route::get('/path/to/get/invoice/data',  [\App\Http\Controllers\store\InvoicesController::class, 'getInvoice']);
     Route::post('/invoicesInfo/data', [\App\Http\Controllers\store\InvoicesController::class, 'getData'])->name('invoicesInfo.data');
 
+    Route::resource('deliverys', \App\Http\Controllers\delivery\DeliverysController::class);
+    Route::get('getStore', [\App\Http\Controllers\store\StoreController::class, 'getStore']);
+    Route::get('deliverys.create', [\App\Http\Controllers\delivery\DeliverysController::class, 'create']);
+    Route::get('getProType', [\App\Http\Controllers\delivery\DeliverysController::class, 'getProType']);
+    Route::get('getDeliveryType', [\App\Http\Controllers\delivery\DeliverysController::class, 'getDeliveryType']);
+    Route::get('getDeliveryTotals', [\App\Http\Controllers\delivery\DeliverysController::class, 'getDeliveryTotals']);
+    Route::post('/deliverysInfo/data', [\App\Http\Controllers\delivery\DeliverysController::class, 'getData'])->name('deliverys.data');
+
     Route::resource('WebSettings', \App\Http\Controllers\Settings\WebSettingsController::class);
+
+    Route::get('pricing.plan', [\App\Http\Controllers\merchant\MerchantInfoController::class, 'pricing']);
 
     Route::resource('MenuPermission', \App\Http\Controllers\Menu\MenuPermissionController::class);
 

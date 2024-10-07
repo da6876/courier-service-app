@@ -4,6 +4,7 @@ namespace App\Http\Controllers\store;
 
 use App\Http\Controllers\Controller;
 use App\Models\LocConfig\DivisionInfo;
+use App\Models\store\ProductType;
 use App\Models\store\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -148,7 +149,35 @@ class StoreController extends Controller
             ]);
         }
     }
+    public function getStore()
+    {
+        try {
+            $user_id = auth()->user()->id;
+            $rowData = Store::where('status', 'A')
+                ->where('create_by', $user_id)
+                ->get();
+            return $rowData;
+        } catch (\Exception $e) {
 
+            return response()->json([
+                "statusCode" => 400,
+                "statusMsg" => $e->getMessage()
+            ]);
+        }
+    }
+    public function getProType()
+    {
+        try {
+            $rowData = ProductType::where('status', 'A')->get();
+            return $rowData;
+        } catch (\Exception $e) {
+
+            return response()->json([
+                "statusCode" => 400,
+                "statusMsg" => $e->getMessage()
+            ]);
+        }
+    }
     public function getData(Request $request)
     {
         if ($request->ajax()) {

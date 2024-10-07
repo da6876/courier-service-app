@@ -18,6 +18,10 @@ class MerchantInfoController extends Controller
     {
         return view('merchant.merchant');
     }
+    public function pricing()
+    {
+        return view('merchant.pricing');
+    }
 
     public function regPost(Request $request)
     {

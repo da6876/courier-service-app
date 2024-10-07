@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2024 at 02:02 PM
+-- Generation Time: Oct 07, 2024 at 02:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -80,12 +80,13 @@ INSERT INTO `change_log` (`log_id`, `table_name`, `operation_type`, `record_id`,
 
 CREATE TABLE `delivery` (
   `id` int(20) NOT NULL,
+  `tracking_number` varchar(100) DEFAULT NULL,
   `uid` varchar(100) DEFAULT NULL,
   `store_id` int(10) DEFAULT NULL,
   `prod_type_id` int(10) DEFAULT NULL,
   `merchant_order_id` int(10) DEFAULT NULL,
-  `recipient_phone` varchar(15) DEFAULT NULL,
-  `recipient_sec_phone` varchar(15) DEFAULT NULL,
+  `recipient_phone` varchar(20) DEFAULT NULL,
+  `recipient_sec_phone` varchar(20) DEFAULT NULL,
   `recipient_name` varchar(150) DEFAULT NULL,
   `recipient_address` varchar(255) DEFAULT NULL,
   `div_id` int(10) DEFAULT NULL,
@@ -105,6 +106,42 @@ CREATE TABLE `delivery` (
   `update_by` varchar(20) DEFAULT NULL,
   `update_date` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `delivery`
+--
+
+INSERT INTO `delivery` (`id`, `tracking_number`, `uid`, `store_id`, `prod_type_id`, `merchant_order_id`, `recipient_phone`, `recipient_sec_phone`, `recipient_name`, `recipient_address`, `div_id`, `dis_id`, `out_id`, `thn_id`, `special_remark`, `delivery_type`, `total_weight`, `quantity`, `amount_to_collect`, `price`, `item_description`, `status`, `create_by`, `create_date`, `update_by`, `update_date`) VALUES
+(1, NULL, '45fd9fb1-6687-4a6d-a83d-b2195c89b166', 1, 110000, NULL, '018423669', '0123695233', 'Sabikun Nahar', 'Mirpur-13,Dhaka', 11000, 12000, 14000, 12, 'Test Special Remark', '1', '12', '1', '5580', '5500', 'Mobile Phone', 'Deleted', '15', '2024-10-07 16:34:12', '15', '2024-10-07 16:53:02'),
+(2, NULL, '30457975-5a28-400a-96cd-46c54f97d78b', 1, 110000, NULL, '+1 (954) 584-2147', '+1 (155) 295-3379', 'Kristen Bryan', 'Cillum velit libero', 11000, 12000, 14001, 8, 'Ullam soluta sunt a', '1', 'Labore vel officia n', '1', '5580', '5500', 'Pariatur Tenetur nu', 'Deleted', '15', '2024-10-07 16:39:24', '15', '2024-10-07 16:53:06'),
+(3, 'DB241007YCKKDT2Z', 'cfe4d3da-a11e-4443-b4f4-e48517182dac', 1, 110000, NULL, '+1 (618) 833-7286', '+1 (622) 116-4353', 'Nathan Beach', 'Et vero ut velit iu', 11000, 12000, 14001, 8, 'Non veniam facere p', '2', 'Sunt eos aliquip mod', '0', '2060', '2000', 'Id veritatis blandit', 'Received', '15', '2024-10-07 16:51:55', '0', '0'),
+(4, 'DB2410074U8R03HB', '32587504-84c4-448f-b144-03ff6fbf6323', 1, 110000, NULL, '+1 (334) 786-5357', '+1 (304) 644-3334', 'Travis England', 'Ullam labore volupta', 11000, 12000, 14001, 8, 'Debitis et at recusa', '2', 'Eos esse minima bl', '0', '1580', '1500', 'In nobis earum exerc', 'Pending', '15', '2024-10-07 16:53:18', '0', '0'),
+(5, 'DB241007PPLBHTTZ', '0c3e90b9-9efa-449e-b9ba-8d348c860c38', 1, 110000, NULL, '+1 (866) 173-8342', '+1 (181) 767-7467', 'Lisandra Gallegos', 'Cumque natus ipsa i', 11000, 12000, 14001, 8, 'Sint eum consequat', '1', '33', '1', '200', '140', 'Exercitationem digni', 'Pending', '15', '2024-10-07 17:23:16', '0', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_type`
+--
+
+CREATE TABLE `delivery_type` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `uid` varchar(36) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `create_by` varchar(10) DEFAULT NULL,
+  `create_date` varchar(20) DEFAULT NULL,
+  `update_by` varchar(10) DEFAULT NULL,
+  `update_date` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `delivery_type`
+--
+
+INSERT INTO `delivery_type` (`id`, `uid`, `name`, `status`, `create_by`, `create_date`, `update_by`, `update_date`) VALUES
+(1, 'adad332323', 'Normal Delivery', 'A', 'system', 'aaaa', NULL, NULL),
+(2, '44fsfsdf', 'Hub Delivery', 'A', 'system', 'asadad', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -162,65 +199,10 @@ INSERT INTO `menus` (`id`, `uid`, `title`, `url`, `icon`, `parent_id`, `order`, 
 (33, '1a3d96b0-780f-11ef-9165-d8bbc14c2e2b', 'Menu Info', 'menu-info', 'bi', 32, 1, 'A', '2024-09-02 19:07:45', '2024-09-02 19:07:45', '2', '2024-09-22 01:30:20'),
 (44, '1a3d9930-780f-11ef-9165-d8bbc14c2e2b', 'Roles', 'roles', 'bi', 4, 1, 'A', '2024-09-02 19:07:45', '2024-09-02 19:07:45', '2', '2024-09-22 01:29:16'),
 (45, '1a3d9973-780f-11ef-9165-d8bbc14c2e2b', 'Permissions', 'permission', 'bi', 4, 1, 'A', '2024-09-02 19:07:45', '2024-09-02 19:07:45', '2', '2024-09-22 01:29:09'),
-(51, 'bd8ddff3-ca32-44c8-9d13-fe9a2e296c06', 'Deliverys', 'deliverys', 'typcn typcn-plane', NULL, 2, 'A', '2', '2024-10-05 16:06:14', 'N', 'N'),
+(51, 'bd8ddff3-ca32-44c8-9d13-fe9a2e296c06', 'Deliverys', 'deliverys', 'typcn typcn-map', NULL, 2, 'A', '2', '2024-10-05 16:06:14', '2', '2024-10-07 16:18:54'),
 (52, '4e487795-08f3-44b3-955b-232841cdc2ae', 'Store', 'store', 'typcn typcn-home-outline', NULL, 3, 'A', '2', '2024-10-05 16:08:26', 'N', 'N'),
-(53, 'd009b7c8-9fb4-4c6e-a5b6-3f34e85e4bea', 'Invoices', 'invoices', 'typcn typcn-clipboard', NULL, 4, 'A', '2', '2024-10-05 16:09:25', 'N', 'N');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menu_user`
---
-
-CREATE TABLE `menu_user` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `menu_id` bigint(20) UNSIGNED NOT NULL,
-  `permissions` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `menu_user`
---
-
-INSERT INTO `menu_user` (`id`, `user_id`, `menu_id`, `permissions`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(2, 2, 30, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(8, 2, 4, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(11, 2, 26, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(12, 2, 27, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(24, 2, 2, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(25, 2, 8, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(26, 2, 9, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(27, 2, 10, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(28, 2, 20, 'view', '2024-09-13 19:12:00', '2024-09-13 19:12:00'),
-(65, 1, 1, 'view', '2024-09-15 11:22:01', '2024-09-15 11:22:01'),
-(66, 1, 2, 'view', '2024-09-15 11:22:01', '2024-09-15 11:22:01'),
-(68, 1, 4, 'view', '2024-09-15 11:22:01', '2024-09-15 11:22:01'),
-(72, 1, 8, 'view', '2024-09-15 11:22:02', '2024-09-15 11:22:02'),
-(73, 1, 9, 'view', '2024-09-15 11:22:02', '2024-09-15 11:22:02'),
-(74, 1, 10, 'view', '2024-09-15 11:22:02', '2024-09-15 11:22:02'),
-(84, 1, 20, 'view', '2024-09-15 11:22:02', '2024-09-15 11:22:02'),
-(90, 1, 26, 'view', '2024-09-15 11:22:02', '2024-09-15 11:22:02'),
-(91, 1, 27, 'view', '2024-09-15 11:22:02', '2024-09-15 11:22:02'),
-(93, 1, 30, 'view', '2024-09-15 11:22:02', '2024-09-15 11:22:02'),
-(95, 1, 32, 'view', '2024-09-15 11:22:02', '2024-09-15 11:22:02'),
-(96, 1, 33, 'view', '2024-09-15 11:22:02', '2024-09-15 11:22:02'),
-(98, 2, 1, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(99, 2, 2, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(101, 2, 4, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(105, 2, 8, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(106, 2, 9, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(107, 2, 10, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(117, 2, 20, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(123, 2, 26, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(124, 2, 27, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(126, 2, 30, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(128, 2, 32, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(129, 2, 33, 'view', '2024-09-15 11:23:13', '2024-09-15 11:23:13'),
-(151, 11, 1, 'view', '2024-09-15 17:23:57', '2024-09-15 17:23:57');
+(53, 'd009b7c8-9fb4-4c6e-a5b6-3f34e85e4bea', 'Invoices', 'invoices', 'typcn typcn-clipboard', NULL, 4, 'A', '2', '2024-10-05 16:09:25', 'N', 'N'),
+(59, '36d3d3e3-8010-4900-a47f-b7b534931572', 'Pricing Plan', 'pricing.plan', 'typcn typcn-credit-card', NULL, 7, 'A', '2', '2024-10-07 16:11:00', 'N', 'N');
 
 -- --------------------------------------------------------
 
@@ -467,10 +449,6 @@ INSERT INTO `permissions` (`id`, `name`, `menu_id`, `created_at`, `updated_at`) 
 (419, 'create', '30', NULL, NULL),
 (420, 'edit', '30', NULL, NULL),
 (421, 'delete', '30', NULL, NULL),
-(422, 'view', '51', NULL, NULL),
-(423, 'create', '51', NULL, NULL),
-(424, 'edit', '51', NULL, NULL),
-(425, 'delete', '51', NULL, NULL),
 (426, 'view', '52', NULL, NULL),
 (427, 'create', '52', NULL, NULL),
 (428, 'edit', '52', NULL, NULL),
@@ -478,7 +456,19 @@ INSERT INTO `permissions` (`id`, `name`, `menu_id`, `created_at`, `updated_at`) 
 (430, 'view', '53', NULL, NULL),
 (431, 'create', '53', NULL, NULL),
 (432, 'edit', '53', NULL, NULL),
-(433, 'delete', '53', NULL, NULL);
+(433, 'delete', '53', NULL, NULL),
+(438, 'view', '56', NULL, NULL),
+(439, 'create', '56', NULL, NULL),
+(440, 'edit', '56', NULL, NULL),
+(441, 'delete', '56', NULL, NULL),
+(462, 'view', '59', NULL, NULL),
+(463, 'create', '59', NULL, NULL),
+(464, 'edit', '59', NULL, NULL),
+(465, 'delete', '59', NULL, NULL),
+(466, 'view', '51', NULL, NULL),
+(467, 'create', '51', NULL, NULL),
+(468, 'edit', '51', NULL, NULL),
+(469, 'delete', '51', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -558,16 +548,45 @@ INSERT INTO `permission_role` (`role_id`, `menu_id`, `permission_id`) VALUES
 (4, 1, 216),
 (4, 1, 217),
 (4, 30, 418),
-(4, 51, 422),
-(4, 51, 423),
-(4, 51, 424),
-(4, 51, 425),
+(4, 51, 466),
+(4, 51, 467),
+(4, 51, 468),
+(4, 51, 469),
 (4, 52, 426),
 (4, 52, 427),
 (4, 52, 428),
 (4, 52, 429),
 (4, 53, 430),
-(4, 53, 431);
+(4, 53, 431),
+(4, 53, 433),
+(4, 59, 462),
+(4, 59, 463),
+(4, 59, 464),
+(4, 59, 465);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_type`
+--
+
+CREATE TABLE `product_type` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `uid` varchar(36) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `create_by` varchar(10) DEFAULT NULL,
+  `create_date` varchar(20) DEFAULT NULL,
+  `update_by` varchar(10) DEFAULT NULL,
+  `update_date` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_type`
+--
+
+INSERT INTO `product_type` (`id`, `uid`, `name`, `status`, `create_by`, `create_date`, `update_by`, `update_date`) VALUES
+(110000, 'test5959', 'Parcel', 'A', 'system', 'asdadad', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -631,7 +650,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('DES1xpdj3tzeV1DYOF1wVJuugHnO4j51cux5Ckq5', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaTl6UDVVQWJNNUVvNWJlU2pzRm00VG94bWlHSjF0Z09tRm14RDAwTyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3N0b3JlIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9pbnZvaWNlcyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE1O30=', 1728215480);
+('M4y8zkW51dGWPRp5Bp2MBQ4MR0dkiR9XPkD9EX3D', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZ05YcDI1NEkwT2NucmFyZHlWQTQxMUF6NlRHR0ZnZXQySVd1ckM3UyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9nZXREZWxpdmVyeVRvdGFscyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1728299037),
+('Ngj67kCpmfkKR3j8qGW4xkBtur9QksuUPTlOlO3S', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidmNRVTVucGl1MFZ5U05HcFhrajhZbEhUUkptdkJvcmVnT0VwcDdvSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kZWxpdmVyeXMiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNTt9', 1728302562);
 
 -- --------------------------------------------------------
 
@@ -884,12 +904,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `uid`, `role_id`, `name`, `user_name`, `email`, `email_verified_at`, `password`, `longitude`, `latitude`, `ip`, `mac`, `last_login`, `status`, `create_by`, `create_date`, `update_date`, `update_by`, `token`) VALUES
 (1, 'admin001', 2, 'Admin User', 'adminuser', 'admin@example.com', '2024-09-05 01:36:50', '$2y$10$YHLibwvE5HlgD6J4XAWRreZ2RIoKwVjALBKey.Gam3Rbjuatg9b/6', '90.361361', '23.7857505', '103.112.236.26', '00:00:00:00:00:00', '2024-09-14 01:20:18', 'A', 'system', '2024-09-05 07:36:50', '2024-09-23 01:05:28', '2', 'z4Jmb8VgX8nuDefCXtW9FIA6arX7xxexFR9ozB7Z'),
-(2, 'superadmin001', 1, 'Super Admin', 'superadmin', 'superadmin@example.com', '2024-09-05 01:36:50', '$2y$10$hpF5dW9/hiTn0/lHZMOCe.qqD9j3mNAIXFNbNHPYtnQtEBXhT7Kdy', '90.41357674009461', '23.742406497043167', '163.53.150.94', '00:00:00:00:00:01', '2024-10-06 12:09:28', 'A', 'system', '2024-09-05 07:36:50', 'QzimdEP4bbpbW0JtPAVqCRcaHhBlxlgchciw6uZg', '2', 'QzimdEP4bbpbW0JtPAVqCRcaHhBlxlgchciw6uZg'),
+(2, 'superadmin001', 1, 'Super Admin', 'superadmin', 'superadmin@example.com', '2024-09-05 01:36:50', '$2y$10$hpF5dW9/hiTn0/lHZMOCe.qqD9j3mNAIXFNbNHPYtnQtEBXhT7Kdy', '90.413607', '23.741911', '163.53.150.94', '00:00:00:00:00:01', '2024-10-07 13:16:30', 'A', 'system', '2024-09-05 07:36:50', 'gNXp254I0OcnrardyVA411Az6TGGFget2IWurC7S', '2', 'gNXp254I0OcnrardyVA411Az6TGGFget2IWurC7S'),
 (10, 'cf1ba2ab-8f08-4cde-a50d-8e134ae5c170', NULL, 'Test44', 'TCZI13', 'test33@gmail.com', NULL, '$2y$10$cQIJBCClH2mmvEY5ng4nYO.JAhivqfDO04/CBD5E5x3sWqc02RAUK', '0.0', '0.0', '0.0', '0.0', '1970-01-01 06:00:00', 'Deleted', '2', '2024-09-09 02:23:36', '2024-09-15 17:28:48', '2', 'ziBbKqYjYLajmT69JHJnrsnEbd0Nf0ZxybzxWIE2OmHoWq1QvF26ctE9LTg7'),
 (11, '6da584ba-c720-4ca0-8682-736a3deb7ddf', 11050004, 'Distributor1', 'KJDD64', 'distributor1@gmail.com', NULL, '$2y$10$UgUueWj56KKQNfmQCXbzUuT/bN2IQRJaYXLZCfI5KtGkJL0XRD3Qq', '90.3613563', '23.7857501', '103.112.236.26', '0.0', '2024-09-22 01:36:14', 'A', '2', '2024-09-15 18:23:39', '6T4qaTIvqukBiGfIZIlkJaWEmXP7jO3AHgU7m1MM', '11', '6T4qaTIvqukBiGfIZIlkJaWEmXP7jO3AHgU7m1MM'),
 (12, '68863927-e812-46f7-8f66-a0e762b9dea1', 11050004, 'Distributor2', 'HQBI84', 'distributor2@gmail.com', NULL, '$2y$10$Rge8gbnK8U6K..FCYGcqAePISUw/kA1YaI0zFl3msgV6Owz4imEuG', '0.0', '0.0', '0.0', '0.0', '1970-01-01 06:00:00', 'A', '2', '2024-09-15 18:24:06', '2024-09-15 19:04:51', '2', '2TSsQXNjl7v8XawbSQkPGYa2xdmzws7nUccDNKII2IL32MzJSBSngF2C6Ku1'),
 (14, '66ee788be50a0', 3, 'Admin User', 'admin', 'admin@soc.com', NULL, '$2y$10$uWCnzuh6.2o1cmd7P18dzOq4pxoD85rfbZscoxFwf0yMpb.w1pv.2', '0', '0', '127.0.0.1', '00:00:00:00:00:00', '2024-09-21 13:40:59', 'A', 'system', '2024-09-21 13:40:59', '2024-09-23 01:05:41', '2', 'dBbH0KzwFKrPtxnydo8AL7RhyzCNGzOhdyQvuQGVKUmREyZoS2e67GXcZeVs'),
-(15, 'c38316ac-7ff7-490f-86f7-feb029d05dd9', 4, 'Rifat Hossion', 'SALL15', 'abirdhali49@gmail.com', NULL, '$2y$10$7XiEVKqIMKLdJEoMZhxa/.fuPHH5xtKnBi01EsrlxNYU02iRUKrgm', '90.4138291', '23.7426666', '163.53.150.94', '0.0', '2024-10-06 15:40:06', 'A', 'abirdhali49@gmail.com', '2024-10-05 15:58:34', 'i9zP5UAbM5Eo5beSjsFm4ToxmiGJ1tgOmFmxD00O', '15', 'i9zP5UAbM5Eo5beSjsFm4ToxmiGJ1tgOmFmxD00O');
+(15, 'c38316ac-7ff7-490f-86f7-feb029d05dd9', 4, 'Rifat Hossion', 'SALL15', 'abirdhali49@gmail.com', NULL, '$2y$10$7XiEVKqIMKLdJEoMZhxa/.fuPHH5xtKnBi01EsrlxNYU02iRUKrgm', '90.4137876', '23.7426165', '163.53.150.94', '0.0', '2024-10-07 12:55:13', 'A', 'abirdhali49@gmail.com', '2024-10-05 15:58:34', 'vcQU5npiu0VySNGpXkj8YlHTRJmvBoregOEpp7oJ', '15', 'vcQU5npiu0VySNGpXkj8YlHTRJmvBoregOEpp7oJ');
 
 --
 -- Indexes for dumped tables
@@ -922,14 +942,6 @@ ALTER TABLE `menus`
   ADD KEY `menus_parent_id_foreign` (`parent_id`);
 
 --
--- Indexes for table `menu_user`
---
-ALTER TABLE `menu_user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `menu_user_user_id_foreign` (`user_id`),
-  ADD KEY `menu_user_menu_id_foreign` (`menu_id`);
-
---
 -- Indexes for table `merchants`
 --
 ALTER TABLE `merchants`
@@ -957,6 +969,12 @@ ALTER TABLE `permission_role`
   ADD PRIMARY KEY (`role_id`,`menu_id`,`permission_id`),
   ADD KEY `permission_role_permission_id_foreign` (`permission_id`),
   ADD KEY `permission_emnu_id_foreign` (`menu_id`);
+
+--
+-- Indexes for table `product_type`
+--
+ALTER TABLE `product_type`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `roles`
@@ -1039,7 +1057,7 @@ ALTER TABLE `change_log`
 -- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1051,13 +1069,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
-
---
--- AUTO_INCREMENT for table `menu_user`
---
-ALTER TABLE `menu_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `merchants`
@@ -1075,7 +1087,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=434;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=470;
+
+--
+-- AUTO_INCREMENT for table `product_type`
+--
+ALTER TABLE `product_type`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110001;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1134,13 +1152,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `menus`
   ADD CONSTRAINT `menus_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `menu_user`
---
-ALTER TABLE `menu_user`
-  ADD CONSTRAINT `menu_user_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `menu_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `permission_role`
