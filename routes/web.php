@@ -39,6 +39,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('getDisUserList', [\App\Http\Controllers\UserConfig\UserInfoController::class, 'getDisUserList']);
     Route::post('/merchant-info/data', [\App\Http\Controllers\merchant\MerchantInfoController::class, 'getData'])->name('merchant-info.data');
 
+    Route::resource('pickup-info', \App\Http\Controllers\pickup\PickupController::class);
+    Route::get('getDeliveryStatus', [\App\Http\Controllers\pickup\PickupController::class, 'getDeliveryStatus']);
+    Route::post('/pickupinfo/data', [\App\Http\Controllers\pickup\PickupController::class, 'getData'])->name('pickupinfo.data');
+
     Route::resource('DivisionInfo', \App\Http\Controllers\LocConfig\DivisionInfoController::class);
     Route::post('/DivisionInfo/data', [\App\Http\Controllers\LocConfig\DivisionInfoController::class, 'getData'])->name('DivisionInfo.data');
 

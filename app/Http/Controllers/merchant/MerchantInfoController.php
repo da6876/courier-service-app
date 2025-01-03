@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class MerchantInfoController extends Controller
 {
@@ -25,26 +26,52 @@ class MerchantInfoController extends Controller
 
     public function regPost(Request $request)
     {
+        DB::beginTransaction();
+
         try {
             $messages = [
-                'owner_email.unique' => 'The email address has already been Used. Please use a different email or login using this email.',
+                'owner_email.unique' => 'The email address has already been used. Please use a different email or login using this email.',
                 'owner_email.required' => 'The email address is required.',
                 'owner_email.email' => 'The email address must be a valid email format.',
             ];
+
             $validator = Validator::make($request->all(), [
                 'owner_name' => 'required',
                 'owner_phone' => 'required',
                 'owner_email' => 'required|email|unique:merchants,owner_email',
                 'company_name' => 'required',
                 'password' => 'required',
-            ],$messages);
+            ], $messages);
 
             if ($validator->fails()) {
                 return response()->json(['statusCode' => 204, 'statusMsg' => 'Validation Error.', 'errors' => $validator->errors()]);
             }
 
+            $user = User::create([
+                'uid' => Str::uuid(),
+                'role_id' => '4',
+                'name' => $request->owner_name,
+                'email' => $request->owner_email,
+                'password' => Hash::make($request->password),
+                'status' => 'A',
+                'user_name' => $this->generateCustomString(),
+                'longitude' => $request->longitude ?: '0.0',
+                'latitude' => $request->latitude ?: '0.0',
+                'ip' => $request->ip ?: '0.0',
+                'mac' => $request->mac ?: '0.0',
+                'last_login' => $request->last_login ?: '0.0',
+                'create_by' => $request->owner_email,
+                'update_by' => '0.0',
+                'create_date' => $this->getCurrentDateTime(),
+                'update_date' => '0.0',
+                'token' => Str::random(60)
+            ]);
+
+            $insertedId = $user->id;
+
             MerchantsInfo::create([
                 'uid' => Str::uuid(),
+                'user_id' => $insertedId,
                 'owner_name' => $request->owner_name,
                 'owner_phone' => $request->owner_phone,
                 'owner_email' => $request->owner_email,
@@ -56,32 +83,17 @@ class MerchantInfoController extends Controller
                 'update_date' => '0'
             ]);
 
-            User::create([
-                'uid' => Str::uuid(),
-                'role_id' =>'4',
-                'name' =>$request->owner_name,
-                'email' =>$request->owner_email,
-                'password' =>Hash::make($request->password),
-                'status' => 'A',
-                'user_name' =>$this->generateCustomString(),
-                'longitude' =>$request->longitude ?: '0.0',
-                'latitude' =>$request->latitude?: '0.0',
-                'ip' =>$request->ip ?: '0.0',
-                'mac' =>$request->mac ?: '0.0',
-                'last_login' =>$request->last_login ?: '0.0',
-                'create_by' => $request->owner_email,
-                'update_by' => '0.0',
-                'create_date' => $this->getCurrentDateTime(),
-                'update_date' => '0.0',
-                'token' => Str::random(60)
-            ]);
             Mail::to($request->owner_email)->send(new RegistrationMail($request->owner_name));
+
+            DB::commit();
 
             return response()->json([
                 "statusCode" => 200,
             ]);
 
         } catch (\Exception $e) {
+            DB::rollBack();
+
             return response()->json([
                 "statusCode" => 400,
                 "statusMsg" => $e->getMessage()

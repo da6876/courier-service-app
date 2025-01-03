@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2024 at 02:03 PM
+-- Generation Time: Jan 03, 2025 at 11:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -112,11 +112,42 @@ CREATE TABLE `delivery` (
 --
 
 INSERT INTO `delivery` (`id`, `tracking_number`, `uid`, `store_id`, `prod_type_id`, `merchant_order_id`, `recipient_phone`, `recipient_sec_phone`, `recipient_name`, `recipient_address`, `div_id`, `dis_id`, `out_id`, `thn_id`, `special_remark`, `delivery_type`, `total_weight`, `quantity`, `amount_to_collect`, `price`, `item_description`, `status`, `create_by`, `create_date`, `update_by`, `update_date`) VALUES
-(1, NULL, '45fd9fb1-6687-4a6d-a83d-b2195c89b166', 1, 110000, NULL, '018423669', '0123695233', 'Sabikun Nahar', 'Mirpur-13,Dhaka', 11000, 12000, 14000, 12, 'Test Special Remark', '1', '12', '1', '5580', '5500', 'Mobile Phone', 'Deleted', '15', '2024-10-07 16:34:12', '15', '2024-10-07 16:53:02'),
+(1, 'DB242207YCKKDT3A', '45fd9fb1-6687-4a6d-a83d-b2195c89b166', 1, 110000, NULL, '018423669', '0123695233', 'Sabikun Nahar', 'Mirpur-13,Dhaka', 11000, 12000, 14000, 12, 'Test Special Remark', '1', '12', '1', '5580', '5500', 'Mobile Phone', '1', '15', '2024-10-07 16:34:12', '15', '2024-10-07 16:53:02'),
 (2, NULL, '30457975-5a28-400a-96cd-46c54f97d78b', 1, 110000, NULL, '+1 (954) 584-2147', '+1 (155) 295-3379', 'Kristen Bryan', 'Cillum velit libero', 11000, 12000, 14001, 8, 'Ullam soluta sunt a', '1', 'Labore vel officia n', '1', '5580', '5500', 'Pariatur Tenetur nu', 'Deleted', '15', '2024-10-07 16:39:24', '15', '2024-10-07 16:53:06'),
-(3, 'DB241007YCKKDT2Z', 'cfe4d3da-a11e-4443-b4f4-e48517182dac', 1, 110000, NULL, '+1 (618) 833-7286', '+1 (622) 116-4353', 'Nathan Beach', 'Et vero ut velit iu', 11000, 12000, 14001, 8, 'Non veniam facere p', '2', 'Sunt eos aliquip mod', '0', '2060', '2000', 'Id veritatis blandit', 'Received', '15', '2024-10-07 16:51:55', '0', '0'),
-(4, 'DB2410074U8R03HB', '32587504-84c4-448f-b144-03ff6fbf6323', 1, 110000, NULL, '+1 (334) 786-5357', '+1 (304) 644-3334', 'Travis England', 'Ullam labore volupta', 11000, 12000, 14001, 8, 'Debitis et at recusa', '2', 'Eos esse minima bl', '0', '1580', '1500', 'In nobis earum exerc', 'Pending', '15', '2024-10-07 16:53:18', '0', '0'),
-(5, 'DB241007PPLBHTTZ', '0c3e90b9-9efa-449e-b9ba-8d348c860c38', 1, 110000, NULL, '+1 (866) 173-8342', '+1 (181) 767-7467', 'Lisandra Gallegos', 'Cumque natus ipsa i', 11000, 12000, 14001, 8, 'Sint eum consequat', '1', '33', '1', '200', '140', 'Exercitationem digni', 'Pending', '15', '2024-10-07 17:23:16', '0', '0');
+(3, 'DB241007YCKKDT2Z', 'cfe4d3da-a11e-4443-b4f4-e48517182dac', 1, 110000, NULL, '+1 (618) 833-7286', '+1 (622) 116-4353', 'Nathan Beach', 'Et vero ut velit iu', 11000, 12000, 14001, 8, 'Non veniam facere p', '2', 'Sunt eos aliquip mod', '0', '2060', '2000', 'Id veritatis blandit', '4', '15', '2024-10-07 16:51:55', '0', '0'),
+(4, 'DB2410074U8R03HB', '32587504-84c4-448f-b144-03ff6fbf6323', 1, 110000, NULL, '+1 (334) 786-5357', '+1 (304) 644-3334', 'Travis England', 'Ullam labore volupta', 11000, 12000, 14001, 8, 'Debitis et at recusa', '2', 'Eos esse minima bl', '0', '1580', '1500', 'In nobis earum exerc', '1', '15', '2024-10-07 16:53:18', '0', '0'),
+(5, 'DB241007PPLBHTTZ', '0c3e90b9-9efa-449e-b9ba-8d348c860c38', 1, 110000, NULL, '+1 (866) 173-8342', '+1 (181) 767-7467', 'Lisandra Gallegos', 'Cumque natus ipsa i', 11000, 12000, 14001, 8, 'Sint eum consequat', '1', '33', '1', '200', '140', 'Exercitationem digni', '1', '15', '2024-10-07 17:23:16', '0', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_status`
+--
+
+CREATE TABLE `delivery_status` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `uid` varchar(36) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `create_by` varchar(10) DEFAULT NULL,
+  `create_date` varchar(20) DEFAULT NULL,
+  `update_by` varchar(10) DEFAULT NULL,
+  `update_date` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `delivery_status`
+--
+
+INSERT INTO `delivery_status` (`id`, `uid`, `name`, `status`, `create_by`, `create_date`, `update_by`, `update_date`) VALUES
+(1, 'asdasd111', 'Pending', 'A', 'system', 'aaaa', NULL, NULL),
+(2, 'asdasd112', 'Rider Pickup Form Store', 'A', 'system', 'aaaa', NULL, NULL),
+(3, 'asdasd113', 'Rider Deliver To Hub', 'A', 'system', 'aaaa', NULL, NULL),
+(4, 'asdasd114', 'Hub Recived', 'A', 'system', 'aaaa', NULL, NULL),
+(5, 'asdasd115', 'Out For Delivery', 'A', 'system', 'aaaa', NULL, NULL),
+(6, 'asdasd115', 'Delivery', 'A', 'system', 'aaaa', NULL, NULL),
+(7, '44fsfsas1', 'Cancle By Store', 'A', 'system', 'asadad', NULL, NULL),
+(8, '44fsfsa25', 'Cancle By Customer', 'A', 'system', 'asadad', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -201,8 +232,9 @@ INSERT INTO `menus` (`id`, `uid`, `title`, `url`, `icon`, `parent_id`, `order`, 
 (45, '1a3d9973-780f-11ef-9165-d8bbc14c2e2b', 'Permissions', 'permission', 'bi', 4, 1, 'A', '2024-09-02 19:07:45', '2024-09-02 19:07:45', '2', '2024-09-22 01:29:09'),
 (51, 'bd8ddff3-ca32-44c8-9d13-fe9a2e296c06', 'Deliverys', 'deliverys', 'typcn typcn-map', NULL, 2, 'A', '2', '2024-10-05 16:06:14', '2', '2024-10-07 16:18:54'),
 (52, '4e487795-08f3-44b3-955b-232841cdc2ae', 'Store', 'store', 'typcn typcn-home-outline', NULL, 3, 'A', '2', '2024-10-05 16:08:26', 'N', 'N'),
-(53, 'd009b7c8-9fb4-4c6e-a5b6-3f34e85e4bea', 'Invoices', 'invoices', 'typcn typcn-clipboard', NULL, 4, 'A', '2', '2024-10-05 16:09:25', 'N', 'N'),
-(59, '36d3d3e3-8010-4900-a47f-b7b534931572', 'Pricing Plan', 'pricing.plan', 'typcn typcn-credit-card', NULL, 7, 'A', '2', '2024-10-07 16:11:00', 'N', 'N');
+(53, 'd009b7c8-9fb4-4c6e-a5b6-3f34e85e4bea', 'Invoices', 'invoices', 'typcn typcn-clipboard', NULL, 4, 'A', '2', '2024-10-05 16:09:25', '2', '2025-01-03 15:23:49'),
+(59, '36d3d3e3-8010-4900-a47f-b7b534931572', 'Pricing Plan', 'pricing.plan', 'typcn typcn-credit-card', NULL, 7, 'A', '2', '2024-10-07 16:11:00', 'N', 'N'),
+(60, 'd143cbc7-38b5-42b5-8fef-36e188f0256b', 'Pickup Info', 'pickup-info', 'typcn typcn-clipboard', NULL, 6, 'A', '2', '2025-01-03 15:24:55', '2', '2025-01-03 15:32:45');
 
 -- --------------------------------------------------------
 
@@ -453,10 +485,6 @@ INSERT INTO `permissions` (`id`, `name`, `menu_id`, `created_at`, `updated_at`) 
 (427, 'create', '52', NULL, NULL),
 (428, 'edit', '52', NULL, NULL),
 (429, 'delete', '52', NULL, NULL),
-(430, 'view', '53', NULL, NULL),
-(431, 'create', '53', NULL, NULL),
-(432, 'edit', '53', NULL, NULL),
-(433, 'delete', '53', NULL, NULL),
 (438, 'view', '56', NULL, NULL),
 (439, 'create', '56', NULL, NULL),
 (440, 'edit', '56', NULL, NULL),
@@ -468,7 +496,15 @@ INSERT INTO `permissions` (`id`, `name`, `menu_id`, `created_at`, `updated_at`) 
 (466, 'view', '51', NULL, NULL),
 (467, 'create', '51', NULL, NULL),
 (468, 'edit', '51', NULL, NULL),
-(469, 'delete', '51', NULL, NULL);
+(469, 'delete', '51', NULL, NULL),
+(474, 'view', '53', NULL, NULL),
+(475, 'create', '53', NULL, NULL),
+(476, 'edit', '53', NULL, NULL),
+(477, 'delete', '53', NULL, NULL),
+(482, 'view', '60', NULL, NULL),
+(483, 'create', '60', NULL, NULL),
+(484, 'edit', '60', NULL, NULL),
+(485, 'delete', '60', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -543,6 +579,10 @@ INSERT INTO `permission_role` (`role_id`, `menu_id`, `permission_id`) VALUES
 (1, 45, 339),
 (1, 45, 340),
 (1, 45, 341),
+(1, 60, 482),
+(1, 60, 483),
+(1, 60, 484),
+(1, 60, 485),
 (4, 1, 214),
 (4, 1, 215),
 (4, 1, 216),
@@ -556,9 +596,10 @@ INSERT INTO `permission_role` (`role_id`, `menu_id`, `permission_id`) VALUES
 (4, 52, 427),
 (4, 52, 428),
 (4, 52, 429),
-(4, 53, 430),
-(4, 53, 431),
-(4, 53, 433),
+(4, 53, 474),
+(4, 53, 475),
+(4, 53, 476),
+(4, 53, 477),
 (4, 59, 462),
 (4, 59, 463),
 (4, 59, 464),
@@ -650,8 +691,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('M4y8zkW51dGWPRp5Bp2MBQ4MR0dkiR9XPkD9EX3D', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZ05YcDI1NEkwT2NucmFyZHlWQTQxMUF6NlRHR0ZnZXQySVd1ckM3UyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9nZXREZWxpdmVyeVRvdGFscyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1728299037),
-('Ngj67kCpmfkKR3j8qGW4xkBtur9QksuUPTlOlO3S', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidmNRVTVucGl1MFZ5U05HcFhrajhZbEhUUkptdkJvcmVnT0VwcDdvSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kZWxpdmVyeXMiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNTt9', 1728302562);
+('7XdmU68Ia3aIaOiYDgld88XxRWAqfKbOXIuQVppH', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiN3Q0OXNwOGhTV1dBdkw2TVE2RHJtOGxNclNaUzVWdnZRYTFzUmRVUSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL1dlYlNldHRpbmdzIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9waWNrdXAtaW5mbyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1735900233),
+('jKWlBbAzOrojCwp6S6zzgYPeNMU2vQxk91YdnXuj', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiS1JlaW16c1I1THZHTVdUbHZ1bWp1NzREZnJ1N3dEOTZwVWZFTXJTbyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL21lbnUtaW5mbyI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGVsaXZlcnlzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTU7fQ==', 1735901662);
 
 -- --------------------------------------------------------
 
@@ -904,12 +945,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `uid`, `role_id`, `name`, `user_name`, `email`, `email_verified_at`, `password`, `longitude`, `latitude`, `ip`, `mac`, `last_login`, `status`, `create_by`, `create_date`, `update_date`, `update_by`, `token`) VALUES
 (1, 'admin001', 2, 'Admin User', 'adminuser', 'admin@example.com', '2024-09-05 01:36:50', '$2y$10$YHLibwvE5HlgD6J4XAWRreZ2RIoKwVjALBKey.Gam3Rbjuatg9b/6', '90.361361', '23.7857505', '103.112.236.26', '00:00:00:00:00:00', '2024-09-14 01:20:18', 'A', 'system', '2024-09-05 07:36:50', '2024-09-23 01:05:28', '2', 'z4Jmb8VgX8nuDefCXtW9FIA6arX7xxexFR9ozB7Z'),
-(2, 'superadmin001', 1, 'Super Admin', 'superadmin', 'superadmin@example.com', '2024-09-05 01:36:50', '$2y$10$hpF5dW9/hiTn0/lHZMOCe.qqD9j3mNAIXFNbNHPYtnQtEBXhT7Kdy', '90.413607', '23.741911', '163.53.150.94', '00:00:00:00:00:01', '2024-10-07 13:16:30', 'A', 'system', '2024-09-05 07:36:50', 'gNXp254I0OcnrardyVA411Az6TGGFget2IWurC7S', '2', 'gNXp254I0OcnrardyVA411Az6TGGFget2IWurC7S'),
+(2, 'superadmin001', 1, 'Super Admin', 'superadmin', 'superadmin@example.com', '2024-09-05 01:36:50', '$2y$10$hpF5dW9/hiTn0/lHZMOCe.qqD9j3mNAIXFNbNHPYtnQtEBXhT7Kdy', '90.413811', '23.7426348', '163.53.150.94', '00:00:00:00:00:01', '2025-01-03 15:16:40', 'A', 'system', '2024-09-05 07:36:50', '7t49sp8hSWWAvL6MQ6Drm8lMrSZS5VvvQa1sRdUQ', '2', '7t49sp8hSWWAvL6MQ6Drm8lMrSZS5VvvQa1sRdUQ'),
 (10, 'cf1ba2ab-8f08-4cde-a50d-8e134ae5c170', NULL, 'Test44', 'TCZI13', 'test33@gmail.com', NULL, '$2y$10$cQIJBCClH2mmvEY5ng4nYO.JAhivqfDO04/CBD5E5x3sWqc02RAUK', '0.0', '0.0', '0.0', '0.0', '1970-01-01 06:00:00', 'Deleted', '2', '2024-09-09 02:23:36', '2024-09-15 17:28:48', '2', 'ziBbKqYjYLajmT69JHJnrsnEbd0Nf0ZxybzxWIE2OmHoWq1QvF26ctE9LTg7'),
-(11, '6da584ba-c720-4ca0-8682-736a3deb7ddf', 11050004, 'Distributor1', 'KJDD64', 'distributor1@gmail.com', NULL, '$2y$10$UgUueWj56KKQNfmQCXbzUuT/bN2IQRJaYXLZCfI5KtGkJL0XRD3Qq', '90.3613563', '23.7857501', '103.112.236.26', '0.0', '2024-09-22 01:36:14', 'A', '2', '2024-09-15 18:23:39', '6T4qaTIvqukBiGfIZIlkJaWEmXP7jO3AHgU7m1MM', '11', '6T4qaTIvqukBiGfIZIlkJaWEmXP7jO3AHgU7m1MM'),
+(11, '6da584ba-c720-4ca0-8682-736a3deb7ddf', 11050004, 'Distributor1', 'KJDD64', 'distributor1@gmail.com', NULL, '$2y$10$UgUueWj56KKQNfmQCXbzUuT/bN2IQRJaYXLZCfI5KtGkJL0XRD3Qq', '90.4138027', '23.7426319', '163.53.150.94', '0.0', '2025-01-03 00:14:47', 'A', '2', '2024-09-15 18:23:39', '21feq2xGyR99IzyaepkjXwAgYylesfUp8CSOsJDX', '11', '21feq2xGyR99IzyaepkjXwAgYylesfUp8CSOsJDX'),
 (12, '68863927-e812-46f7-8f66-a0e762b9dea1', 11050004, 'Distributor2', 'HQBI84', 'distributor2@gmail.com', NULL, '$2y$10$Rge8gbnK8U6K..FCYGcqAePISUw/kA1YaI0zFl3msgV6Owz4imEuG', '0.0', '0.0', '0.0', '0.0', '1970-01-01 06:00:00', 'A', '2', '2024-09-15 18:24:06', '2024-09-15 19:04:51', '2', '2TSsQXNjl7v8XawbSQkPGYa2xdmzws7nUccDNKII2IL32MzJSBSngF2C6Ku1'),
 (14, '66ee788be50a0', 3, 'Admin User', 'admin', 'admin@soc.com', NULL, '$2y$10$uWCnzuh6.2o1cmd7P18dzOq4pxoD85rfbZscoxFwf0yMpb.w1pv.2', '0', '0', '127.0.0.1', '00:00:00:00:00:00', '2024-09-21 13:40:59', 'A', 'system', '2024-09-21 13:40:59', '2024-09-23 01:05:41', '2', 'dBbH0KzwFKrPtxnydo8AL7RhyzCNGzOhdyQvuQGVKUmREyZoS2e67GXcZeVs'),
-(15, 'c38316ac-7ff7-490f-86f7-feb029d05dd9', 4, 'Rifat Hossion', 'SALL15', 'abirdhali49@gmail.com', NULL, '$2y$10$7XiEVKqIMKLdJEoMZhxa/.fuPHH5xtKnBi01EsrlxNYU02iRUKrgm', '90.4137876', '23.7426165', '163.53.150.94', '0.0', '2024-10-07 12:55:13', 'A', 'abirdhali49@gmail.com', '2024-10-05 15:58:34', 'vcQU5npiu0VySNGpXkj8YlHTRJmvBoregOEpp7oJ', '15', 'vcQU5npiu0VySNGpXkj8YlHTRJmvBoregOEpp7oJ');
+(15, 'c38316ac-7ff7-490f-86f7-feb029d05dd9', 4, 'Rifat Hossion', 'SALL15', 'abirdhali49@gmail.com', NULL, '$2y$10$7XiEVKqIMKLdJEoMZhxa/.fuPHH5xtKnBi01EsrlxNYU02iRUKrgm', '90.4138124', '23.7426338', '163.53.150.94', '0.0', '2025-01-03 15:17:51', 'A', 'abirdhali49@gmail.com', '2024-10-05 15:58:34', 'KReimzsR5LvGMWTlvumju74Dfru7wD96pUfEMrSo', '15', 'KReimzsR5LvGMWTlvumju74Dfru7wD96pUfEMrSo');
 
 --
 -- Indexes for dumped tables
@@ -1069,7 +1110,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `merchants`
@@ -1087,7 +1128,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=470;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=486;
 
 --
 -- AUTO_INCREMENT for table `product_type`

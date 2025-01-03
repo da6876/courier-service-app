@@ -147,17 +147,23 @@ class UserInfoController extends Controller
     public function getUserData(Request $request)
     {
         if ($request->ajax()) {
-            $query = User::query()->where('status', '!=', 'Deleted');
-            // Apply custom filters
+            $query = User::query()
+                ->where('status', '!=', 'Deleted')
+                ->join('roles', 'users.role_id', '=', 'roles.id')
+                ->select('users.*', 'roles.description as role');
+
             if ($request->has('name') && $request->input('name') != '') {
-                $query->where('name', 'like', '%' . $request->input('name') . '%');
+                $query->where('users.name', 'like', '%' . $request->input('name') . '%');
             }
             if ($request->has('email') && $request->input('email') != '') {
-                $query->where('email', 'like', '%' . $request->input('email') . '%');
+                $query->where('users.email', 'like', '%' . $request->input('email') . '%');
+            }
+            if ($request->has('type_id1') && $request->input('type_id1') != '') {
+                $query->where('roles.id', 'like', '%' . $request->input('type_id1') . '%');
             }
 
-
             $totalData = $query->count();
+
             $filteredData = $query->skip($request->input('start'))
                 ->take($request->input('length'))
                 ->get();
